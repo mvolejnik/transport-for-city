@@ -1,2 +1,2 @@
 # transport-for-city
-Transport for City (Prototype) - Citie's transport lines status updates for Andoroid.
+Transport for City (Prototype) - Cities' transport lines status updates for Andoroid.
