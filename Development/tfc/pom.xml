@@ -20,7 +20,7 @@
 
 	<modules>
 		<module>tfc-build</module>
-		<module>tfc-server-app</module>
+		<module>tfc-server</module>
 	</modules>
 
 
