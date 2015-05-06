@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    >
+  <channel>
+    <description>Dopravní podnik hlavního města Praha</description>
+    <language>cs</language>
+    <link>http://www.dpp.cz/</link>
+    <title>DPP.cz - Mimořádné události</title>
+    <pubDate>Tue, 05 May 2015 07:23:57 +0200</pubDate>
+    <lastBuildDate>Tue, 05 May 2015 07:23:57 +0200</lastBuildDate>
+    <ttl>30</ttl>
+    			        <item>
+          <title><![CDATA[Klamovka - Kavalírka (04.05. 15:43 - 04.05. 15:57)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Klamovka - Kavalírka</section>
+	    <emergency_types>dopravní nehoda</emergency_types>
+	    <time_start>2015-05-04 15:43:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-04 15:57:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>4, 9, 10, 16</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505041543/</link>
+          <pubDate>Mon, 04 May 2015 15:55:46 +0200</pubDate>
+          <guid isPermaLink="false">214722-1505041543</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Šumavská - Náměstí Míru (04.05. 14:31 - 04.05. 14:45)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Šumavská - Náměstí Míru</section>
+	    <emergency_types>překážka na trati</emergency_types>
+	    <time_start>2015-05-04 14:31:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-04 14:45:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>10,16</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505041431/</link>
+          <pubDate>Mon, 04 May 2015 14:42:35 +0200</pubDate>
+          <guid isPermaLink="false">214712-1505041431</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Smíchovské nádraží - Plzenka (04.05. 13:10 - 04.05. 13:28)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Smíchovské nádraží - Plzenka</section>
+	    <emergency_types>překážka na trati</emergency_types>
+	    <time_start>2015-05-04 13:10:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-04 13:28:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>12,14,20</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505041310/</link>
+          <pubDate>Mon, 04 May 2015 13:23:22 +0200</pubDate>
+          <guid isPermaLink="false">214702-1505041310</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Blatiny - Sídliště Řepy (04.05. 09:24 - 04.05. 09:40)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Blatiny - Sídliště Řepy</section>
+	    <emergency_types>dopravní nehoda</emergency_types>
+	    <time_start>2015-05-04 09:24:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-04 09:40:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>9, 10</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505040924/</link>
+          <pubDate>Mon, 04 May 2015 09:36:16 +0200</pubDate>
+          <guid isPermaLink="false">214682-1505040924</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Radhoštská - Jiřího z Poděbrad (04.05. 09:18 - 04.05. 09:30)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Radhoštská - Jiřího z Poděbrad</section>
+	    <emergency_types>dopravní nehoda</emergency_types>
+	    <time_start>2015-05-04 09:18:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-04 09:30:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>11</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505040918/</link>
+          <pubDate>Mon, 04 May 2015 09:29:24 +0200</pubDate>
+          <guid isPermaLink="false">214680-1505040918</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Uhříněves (04.05. 08:00 - 04.05. 15:07)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Uhříněves</section>
+	    <emergency_types>zpoždění spojů, nepravidelný provoz, prodloužení intervalu</emergency_types>
+	    <time_start>2015-05-04 08:00:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-04 15:07:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                   <line>BUS</line>                              	    </aff_line_types>
+            <aff_lines>265, 266, 267, 364, 366</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505040800A/</link>
+          <pubDate>Mon, 04 May 2015 08:30:24 +0200</pubDate>
+          <guid isPermaLink="false">214673-1505040800a</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Nuselská radnice - Horky (04.05. 06:32 - 04.05. 06:44)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Nuselská radnice - Horky</section>
+	    <emergency_types>technická závada vlaku</emergency_types>
+	    <time_start>2015-05-04 06:32:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-04 06:44:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>24</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505040632/</link>
+          <pubDate>Mon, 04 May 2015 08:16:28 +0200</pubDate>
+          <guid isPermaLink="false">214670-1505040632</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Strakonická (04.05. 07:30 - 04.05. 15:08)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Strakonická</section>
+	    <emergency_types>zpoždění spojů, nepravidelný provoz, prodloužení intervalu</emergency_types>
+	    <time_start>2015-05-04 07:30:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-04 15:08:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                   <line>BUS</line>                              	    </aff_line_types>
+            <aff_lines>129, 241</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505040730A2/</link>
+          <pubDate>Mon, 04 May 2015 08:11:41 +0200</pubDate>
+          <guid isPermaLink="false">214669-1505040730a2</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Budějovická (04.05. 07:30 - 04.05. 15:07)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Budějovická</section>
+	    <emergency_types>zpoždění spojů, nepravidelný provoz, prodloužení intervalu</emergency_types>
+	    <time_start>2015-05-04 07:30:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-04 15:07:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                   <line>BUS</line>                              	    </aff_line_types>
+            <aff_lines>193</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505040730A1/</link>
+          <pubDate>Mon, 04 May 2015 08:09:35 +0200</pubDate>
+          <guid isPermaLink="false">214668-1505040730a1</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Spojovací, Jičínská, K Žižkovu, Ohrada, Průmyslová (04.05. 07:30 - 04.05. 15:08)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Spojovací, Jičínská, K Žižkovu, Ohrada, Průmyslová</section>
+	    <emergency_types>zpoždění spojů, nepravidelný provoz, prodloužení intervalu</emergency_types>
+	    <time_start>2015-05-04 07:30:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-04 15:08:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                   <line>BUS</line>                              	    </aff_line_types>
+            <aff_lines>136, 177, 181, 183, 195</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505040730A/</link>
+          <pubDate>Mon, 04 May 2015 08:08:44 +0200</pubDate>
+          <guid isPermaLink="false">214667-1505040730a</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Českobrodská (04.05. 07:00 - 04.05. 15:08)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Českobrodská</section>
+	    <emergency_types>zpoždění spojů, nepravidelný provoz, prodloužení intervalu</emergency_types>
+	    <time_start>2015-05-04 07:00:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-04 15:08:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                   <line>BUS</line>                              	    </aff_line_types>
+            <aff_lines>163, 250, 261</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505040700A/</link>
+          <pubDate>Mon, 04 May 2015 07:18:44 +0200</pubDate>
+          <guid isPermaLink="false">214662-1505040700a</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Náměstí Republiky (03.05. 17:03 - 03.05. 18:05)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Náměstí Republiky - Strossmayerovo náměstí, resp. Čechův most (vždy oba směry)</section>
+	    <emergency_types>dopravní nehoda</emergency_types>
+	    <time_start>2015-05-03 17:03:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-03 18:05:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                   <line>BUS</line>               <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>5, 8, 24, 26, 207, AE</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505031703/</link>
+          <pubDate>Sun, 03 May 2015 17:12:44 +0200</pubDate>
+          <guid isPermaLink="false">214653-1505031703</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Náměstí Republiky - Strossmayerovo náměstí (03.05. 09:07 - 03.05. 09:30)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Náměstí Republiky - Strossmayerovo náměstí (oba směry)</section>
+	    <emergency_types>provozní příčina</emergency_types>
+	    <time_start>2015-05-03 09:07:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-03 09:30:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                   <line>BUS</line>               <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>5, 8, 17, 24, 26, 207, AE</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505030907/</link>
+          <pubDate>Sun, 03 May 2015 09:13:55 +0200</pubDate>
+          <guid isPermaLink="false">214645-1505030907</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[ZOO - Podhoří (02.05. 17:22 - 03.05. 06:18)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>ZOO - Podhoří</section>
+	    <emergency_types>dopravní nehoda</emergency_types>
+	    <time_start>2015-05-02 17:22:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-03 06:18:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                   <line>BUS</line>                              	    </aff_line_types>
+            <aff_lines>112</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505021722A/</link>
+          <pubDate>Sat, 02 May 2015 17:10:51 +0200</pubDate>
+          <guid isPermaLink="false">214630-1505021722a</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Pohořelec - Malovanka (02.05. 09:52 - 02.05. 10:18)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Pohořelec - Brusnice (oba směry)</section>
+	    <emergency_types>překážka na trati</emergency_types>
+	    <time_start>2015-05-02 09:52:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-02 10:18:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>22</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505020952/</link>
+          <pubDate>Sat, 02 May 2015 10:07:02 +0200</pubDate>
+          <guid isPermaLink="false">214615-1505020952</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Kotlářka (do centra) (02.05. 08:56 - 02.05. 09:18)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Kotlářka - Anděl</section>
+	    <emergency_types>technická závada vlaku</emergency_types>
+	    <time_start>2015-05-02 08:56:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-02 09:18:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>9, 10, 16</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505020856/</link>
+          <pubDate>Sat, 02 May 2015 09:14:24 +0200</pubDate>
+          <guid isPermaLink="false">214614-1505020856</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Bruselská - I.P.Pavlova (02.05. 05:32 - 02.05. 05:44)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Bruselská - I.P.Pavlova</section>
+	    <emergency_types>dopravní nehoda</emergency_types>
+	    <time_start>2015-05-02 05:32:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-02 05:44:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>7, 11, 18, 24 (spojením linek též 14)</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505020532/</link>
+          <pubDate>Sat, 02 May 2015 06:08:20 +0200</pubDate>
+          <guid isPermaLink="false">214610-1505020532</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Vozovna Žižkov - Ohrada (01.05. 23:38 - 01.05. 23:55)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Vozovna Žižkov - Ohrada</section>
+	    <emergency_types>dopravní nehoda</emergency_types>
+	    <time_start>2015-05-01 23:38:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-01 23:55:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>1, 9</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505012338/</link>
+          <pubDate>Fri, 01 May 2015 23:51:20 +0200</pubDate>
+          <guid isPermaLink="false">214607-1505012338</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Právnická fakulta - Staroměstská (01.05. 17:58 - 01.05. 18:15)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Právnická fakulta - Staroměstská</section>
+	    <emergency_types>dopravní nehoda</emergency_types>
+	    <time_start>2015-05-01 17:58:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-01 18:15:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>17</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505011758/</link>
+          <pubDate>Fri, 01 May 2015 18:08:02 +0200</pubDate>
+          <guid isPermaLink="false">214593-1505011758</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[obratiště Kubánské náměstí (01.05. 14:10 - 01.05. 14:24)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Kubánské náměstí - Ortenovo náměstí - Sídliště Barrandov</section>
+	    <emergency_types>zásah integrovaného záchranného systému</emergency_types>
+	    <time_start>2015-05-01 14:10:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-01 14:24:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>24 (spojením linek též 14)</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505011410/</link>
+          <pubDate>Fri, 01 May 2015 14:29:00 +0200</pubDate>
+          <guid isPermaLink="false">214589-1505011410</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Národní divadlo - Lazarská (01.05. 13:45 - 01.05. 14:05)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Národní divadlo - Lazarská</section>
+	    <emergency_types>konání manifestace, demonstrace</emergency_types>
+	    <time_start>2015-05-01 13:45:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-01 14:05:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>9, 18, 22</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505011345/</link>
+          <pubDate>Fri, 01 May 2015 14:19:15 +0200</pubDate>
+          <guid isPermaLink="false">214588-1505011345</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Jiráskovo náměstí - Myslíkova (01.05. 11:23 - 01.05. 11:34)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Jiráskovo náměstí - Myslíkova (oba směry)</section>
+	    <emergency_types>konání manifestace, demonstrace</emergency_types>
+	    <time_start>2015-05-01 11:23:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-01 11:34:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>14</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505011123/</link>
+          <pubDate>Fri, 01 May 2015 11:35:46 +0200</pubDate>
+          <guid isPermaLink="false">214581-1505011123</guid>
+        </item>
+	    			        <item>
+          <title><![CDATA[Dvorce - Kublov (01.05. 04:02 - 01.05. 05:27)]]></title>
+          <description><![CDATA[]]></description>
+	  <content_encoded><![CDATA[
+            <section>Dvorce - Podolská vodárna (oba směry)</section>
+	    <emergency_types>dopravní nehoda, náhradní autobusová doprava</emergency_types>
+	    <time_start>2015-05-01 04:02:00</time_start>
+	    <time_stop>0000-00-00 00:00:00</time_stop>
+	    <time_final_stop>2015-05-01 05:27:00</time_final_stop>
+            <integrated_rescue_system></integrated_rescue_system>
+	    <aff_line_types>
+	                                                                                  <line>Tram</line>               	    </aff_line_types>
+            <aff_lines>3, 17, 52</aff_lines>
+	  ]]></content_encoded>      
+	  <link>http://www.dpp.cz/mimoradne-udalosti/1505010402/</link>
+          <pubDate>Fri, 01 May 2015 04:59:34 +0200</pubDate>
+          <guid isPermaLink="false">214566-1505010402</guid>
+        </item>
+	          </channel>
+</rss>
