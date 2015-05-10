@@ -1,0 +1,13 @@
+
+create database if not exists tfc default character set = utf8 default collate utf8_general_ci;
+
+create user 'tfc'@'%' identified by 'password';
+create user 'tfc'@'localhost' identified by 'password';
+create user 'tfcinstall'@'localhost' identified by 'password';
+create user 'tfcinstall'@'%' identified by 'password';
+
+grant select,insert,update,delete on tfc.* to 'tfc'@'%';
+grant select,insert,update,delete on tfc.* to 'tfc'@'localhost';
+grant all on tfc.* to 'tfcinstall'@'localhost';
+grant all on tfc.* to 'tfcinstall'@'%';
+

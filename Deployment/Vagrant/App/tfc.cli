@@ -1,0 +1,22 @@
+connect
+if (outcome == success) of /subsystem=datasources/data-source=ExampleDS:read-resource(recursive=false)
+	/subsystem=datasources/data-source=ExampleDS/:remove
+end-if
+
+if (outcome != success) of /subsystem=datasources/data-source=tfcDS:read-resource(recursive=false)
+        data-source add --jndi-name=java:/jdbc/tfc/tfcDS --name=tfcDS --connection-url=jdbc:mariadb://localhost:3306/tfc --driver-name=mariadb --user-name=tfc --password=password
+end-if
+#/subsystem=datasources/data-source=tfcDS/:disable
+/subsystem=datasources/data-source=tfcDS/:write-attribute(name=driver-name,value=mariadb)
+/subsystem=datasources/data-source=tfcDS/:write-attribute(name=user-name,value=tfc)
+/subsystem=datasources/data-source=tfcDS/:write-attribute(name=password,value=password)
+
+/subsystem=datasources/data-source=tfcDS/:write-attribute(name=initial-pool-size,value=2)
+/subsystem=datasources/data-source=tfcDS/:write-attribute(name=min-pool-size,value=2)
+/subsystem=datasources/data-source=tfcDS/:write-attribute(name=max-pool-size,value=10)
+
+/subsystem=datasources/data-source=tfcDS/:write-attribute(name=prepared-statements-cache-size,value=100)
+/subsystem=datasources/data-source=tfcDS/:write-attribute(name=query-timeout,value=60000)
+#/subsystem=datasources/data-source=tfcDS/:enable
+:shutdown(restart=true)
+

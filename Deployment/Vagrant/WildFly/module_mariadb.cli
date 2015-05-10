@@ -1,0 +1,2 @@
+module add --name=org.mariadb.jdbc --resources=/vagrant/.install/mariadb-java-client-1.1.8.jar --dependencies=javax.api,javax.transaction.api
+

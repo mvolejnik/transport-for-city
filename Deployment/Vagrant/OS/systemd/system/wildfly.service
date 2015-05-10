@@ -1,0 +1,9 @@
+[Unit]
+Description=WildFly Application Server
+After=syslog.target network.target
+[Service]
+Type=forking
+ExecStart=/opt/wildfly/bin/init.d/wildfly-init-redhat.sh start
+ExecStop=/opt/wildfly/bin/init.d/wildfly-init-redhat.sh stop
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,4 @@
+connect
+if (outcome != success) of /subsystem=datasources/jdbc-driver=mariadb:read-resource(recursive=false)
+	/subsystem=datasources/jdbc-driver=mariadb:add(driver-name="mariadb",driver-module-name="org.mariadb.jdbc",driver-class-name=org.mariadb.jdbc.Driver)
+end-if

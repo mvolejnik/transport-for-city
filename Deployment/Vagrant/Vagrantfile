@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box_check_update = false
+  config.vbguest.auto_update = true
+  config.vbguest.no_remote = true
+  
+  config.vm.define "tfc" do |tfc|
+    tfc.vm.box = "chef/centos-7.1"
+    tfc.vm.network "private_network", ip: "192.168.190.2"
+
+    tfc.vm.boot_timeout = 300
+    tfc.vm.hostname = "tfc.local.pri"
+
+    tfc.vm.provider "virtualbox" do |v|
+      v.memory = 4096
+      v.cpus = 2
+    end
+
+    tfc.vm.provision "shell", path: "install.sh"
+    tfc.vm.provision "shell", path: "install-os.sh"
+    tfc.vm.provision "shell", path: "install-java.sh"
+    tfc.vm.provision "shell", path: "install-db.sh"
+    tfc.vm.provision "shell", path: "install-wildfly.sh"
+    tfc.vm.provision "shell", path: "install-app.sh"
+  end
+end
+
+
