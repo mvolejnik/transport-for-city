@@ -15,24 +15,8 @@ public class StatusUpdates {
 	@GET
 	@Path("/countires/{country}/cities/{city}/operators/{operator}/lines")
 	@Produces("application/json")
-	public void countries(){
-		l.debug("countries()::");
-		
-	}
-	
-	@GET
-	@Path("/countires/{country}/cities/{city}/operators/{operator}/lines")
-	@Produces("application/json")
 	public void status(){
 		l.debug("status()::");
-		
-	}
-	
-	@GET
-	@Path("/countires/{country}/cities/{city}/operators/{operator}/lines")
-	@Produces("application/json")
-	public void lines(){
-		l.debug("lines():: Country Code [%s], City Code [%s], Operator [%s]");
 		
 	}
 	

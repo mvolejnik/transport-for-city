@@ -5,6 +5,7 @@ import java.io.OutputStream;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
@@ -68,7 +69,7 @@ public class Transport {
 	@Path("/countries/{country}/cities")
 	@Produces("application/json")
 	//@Timed(name=METRICS_TRANSPORT_CITIES)
-	public Response cities() {
+	public Response cities(@PathParam("country") String country) {
 		l.debug("cities()::");
 		try {
 			StreamingOutput stream = new StreamingOutput() {
@@ -94,9 +95,9 @@ public class Transport {
 	}
 
 	@GET
-	@Path("/countries/{country}/cities/{city}/operators")
+	@Path("/countries/{country}/cities/{city}/operators/{operator}")
 	@Produces("application/json")
-	public Response operators() {
+	public Response operator(@PathParam("country") String country, @PathParam("city") String city, @PathParam("operator") String operator) {
 		l.debug("operators()::");
 		try {
 			StreamingOutput stream = new StreamingOutput() {
@@ -122,9 +123,9 @@ public class Transport {
 	}
 
 	@GET
-	@Path("/countries/{country}/cities/{city}/operators/{operator}/lines")
+	@Path("/countries/{country}/cities/{city}/lines")
 	@Produces("application/json")
-	public Response lines() {
+	public Response lines(@PathParam("country") String country, @PathParam("city") String city) {
 		l.debug("lines():: Country Code [%s], City Code [%s], Operator [%s]");
 		try {
 			StreamingOutput stream = new StreamingOutput() {
