@@ -16,5 +16,6 @@
     <module>lib-rss</module>
     <module>tfc-core</module>
     <module>tfc-ws-rest</module>
+    <module>lib-status-updates</module>
   </modules>
 </project>
