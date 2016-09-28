@@ -1,7 +1,7 @@
 package app.tfc.libs.rss;
 
 public interface Rss {
-	
-	//TODO
+
+	public app.tfc.libs.rss.jaxb.rss20.Rss getRss();
 	
 }

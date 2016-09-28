@@ -23,4 +23,10 @@ public class Rss20Impl implements app.tfc.libs.rss.Rss{
 	        throw new RssException(e);
         }
 	}
+
+	@Override
+	public Rss getRss() {
+		return rss;
+	}
+	
 }
