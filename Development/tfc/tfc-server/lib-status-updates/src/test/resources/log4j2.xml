@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Appender name="NULL" class="org.apache.log4j.varia.NullAppender"/>
+	</Appenders>
+	<Loggers>
+		<Root level="error">
+			<AppenderRef ref="NULL" />
+		</Root>
+	</Loggers>
+</Configuration>
