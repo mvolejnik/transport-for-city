@@ -2,14 +2,22 @@ package app.tfc.server.status.cz.prg.dpp;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBElement;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.w3c.dom.CharacterData;
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Element;
+import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 
 import app.tfc.libs.rss.Rss;
 import app.tfc.libs.rss.RssException;
@@ -99,9 +107,15 @@ public class DppFactory {
 				Element element = (Element) attr;
 				String name = element.getLocalName();
 				switch (name) {
-				case ":content_encoded":
+				case "content_encoded":
 					l.debug("parseStatusUpdate():: Processing content_encoded");
-					//TODO
+					CharacterData text = (CharacterData) element.getFirstChild();
+					try {
+						parseContent(text.getData());
+					} catch (DOMException | XMLStreamException e) {
+						l.warn("Unable to parse RSS Item Content Data", e);
+						l.debug("parseStatusUpdate():: [%s]", text);
+					}
 					break;
 				default:
 					l.debug("parseStatusUpdate():: unable to parse %s", name);
@@ -110,6 +124,81 @@ public class DppFactory {
 		}
 		StatusUpdate update = new StatusUpdateImpl(title, description, type, line, infoReference);
 		return update;// TODO
+	}
+	
+	private Content parseContent(String xmlContent) throws XMLStreamException{
+		Content content = new Content();
+		StringBuilder xml = new StringBuilder();
+		xml.append("<content>").append(xmlContent).append("</content>");
+		XMLInputFactory f = XMLInputFactory.newInstance();
+		XMLStreamReader r = f.createXMLStreamReader(IOUtils.toInputStream(xml.toString(), Charset.forName("UTF-8")));
+		while(r.hasNext()) {
+		    int t = r.next();
+		    if (r.isStartElement()){
+		    	//TODO Content
+		    }
+		}
+		return content;
+	}
+	
+	private static class Content {
+		private String section;
+		private String emergencyType;
+		private String start;
+		private String stop;
+		private String finalStop;
+		private String integratedRescueSystem;
+		private List<String> lineTypes;
+		private String lines;
+		public String getSection() {
+			return section;
+		}
+		public void setSection(String section) {
+			this.section = section;
+		}
+		public String getEmergencyType() {
+			return emergencyType;
+		}
+		public void setEmergencyType(String emergencyType) {
+			this.emergencyType = emergencyType;
+		}
+		public String getStart() {
+			return start;
+		}
+		public void setStart(String start) {
+			this.start = start;
+		}
+		public String getStop() {
+			return stop;
+		}
+		public void setStop(String stop) {
+			this.stop = stop;
+		}
+		public String getFinalStop() {
+			return finalStop;
+		}
+		public void setFinalStop(String finalStop) {
+			this.finalStop = finalStop;
+		}
+		public String getIntegratedRescueSystem() {
+			return integratedRescueSystem;
+		}
+		public void setIntegratedRescueSystem(String integratedRescueSystem) {
+			this.integratedRescueSystem = integratedRescueSystem;
+		}
+		public List<String> getLineTypes() {
+			return lineTypes;
+		}
+		public void setLineTypes(List<String> lineTypes) {
+			this.lineTypes = lineTypes;
+		}
+		public String getLines() {
+			return lines;
+		}
+		public void setLines(String lines) {
+			this.lines = lines;
+		}
+		
 	}
 
 }

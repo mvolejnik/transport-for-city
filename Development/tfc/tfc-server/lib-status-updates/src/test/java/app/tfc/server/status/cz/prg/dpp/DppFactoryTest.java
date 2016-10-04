@@ -29,7 +29,6 @@ public class DppFactoryTest {
 		DppFactory dppFactory = new DppFactory();
 		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_SIMPLE)));
 		StatusUpdate su = updates.get(0);
-		System.out.println("========== [" + su.getDescription() + "]");
 		assertEquals("Unexpected RSS item description!",  "DESCRIPTION", su.getDescription());
 	}
 	
