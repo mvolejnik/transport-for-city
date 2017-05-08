@@ -1,21 +1,22 @@
 package app.tfc.server.status;
 
 import java.net.URL;
+import java.util.Collection;
 
 public class StatusUpdateImpl implements StatusUpdate {
 	
 	private String title;
 	private String description;
 	private String type;
-	private String line;
+	private Collection<String> lines;
 	private URL infoReference;
 	
-	public StatusUpdateImpl(String title, String description, String type, String line, URL infoReference) {
+	public StatusUpdateImpl(String title, String description, String type, Collection<String> lines, URL infoReference) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.type = type;
-		this.line = line;
+		this.lines = lines;
 		this.infoReference = infoReference;
 	}
 
@@ -35,8 +36,8 @@ public class StatusUpdateImpl implements StatusUpdate {
 	}
 
 	@Override
-	public String getLine() {
-		return line;
+	public Collection<String> getLines() {
+		return lines;
 	}
 
 	@Override
