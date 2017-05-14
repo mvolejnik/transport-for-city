@@ -10,11 +10,14 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import javax.xml.stream.events.XMLEvent;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -44,7 +47,7 @@ public class DppFactory {
 		try {
 			rss = new Rss20Impl(rssInputStream);
 		} catch (RssException e) {
-			l.error("DppStatusUpdates()::");
+			l.error("statusUpdates::");
 			throw new StatusUpdateException("Unable to parse RSS!", e);
 		}
 
@@ -60,7 +63,7 @@ public class DppFactory {
 		String title = null;
 		String description = null;
 		String type = null;
-		Collection<String> lines = Collections.<String>emptyList();
+		Collection<String> lines = new ArrayList<String>();
 		Calendar startAt, finishAt, expectedFinishAt;
 		URL infoReference = null;
 		List<Object> attrs = rss.getTitleOrDescriptionOrLink();
@@ -68,7 +71,7 @@ public class DppFactory {
 			if (attr instanceof JAXBElement<?>) {// TODO generics
 				JAXBElement e = (JAXBElement) attr;
 				Class clazz = ((JAXBElement) attr).getDeclaredType();
-				l.debug("parseStatusUpdate():: Attribute of type [%s].", clazz);
+				l.trace("parseStatusUpdate():: Attribute of type [%{}].", clazz);
 				String name = ((JAXBElement) attr).getName().getNamespaceURI() + ":"
 						+ ((JAXBElement) attr).getName().getLocalPart();
 				Object value = ((JAXBElement) attr).getValue();
@@ -117,12 +120,12 @@ public class DppFactory {
 							try {
 								infoReference = new URL(link);
 							} catch (MalformedURLException e1) {
-								l.warn("Unable to parse link [%s]", link);
+								l.warn("Unable to parse link [{}]", link);
 							}
 						}
 						break;
 					default:
-						l.debug("parseStatusUpdate():: unable to parse %s", name);
+						l.debug("parseStatusUpdate():: unable to parse [{}]", name);
 					}
 				}
 			} else if (attr instanceof Element) {
@@ -133,14 +136,15 @@ public class DppFactory {
 					l.debug("parseStatusUpdate():: Processing content_encoded");
 					CharacterData text = (CharacterData) element.getFirstChild();
 					try {
-						parseContent(text.getData());
+						Content c = parseContent(text.getData());
+						lines.addAll(c.getLines());
 					} catch (DOMException | XMLStreamException e) {
 						l.warn("Unable to parse RSS Item Content Data", e);
-						l.debug("parseStatusUpdate():: [%s]", text);
+						l.debug("parseStatusUpdate():: [{}]", text);
 					}
 					break;
 				default:
-					l.debug("parseStatusUpdate():: unable to parse %s", name);
+					l.debug("parseStatusUpdate():: unable to parse [{}]", name);
 				}
 			}
 		}
@@ -155,10 +159,11 @@ public class DppFactory {
 		xml.append("<content>").append(xmlContent).append("</content>");
 		XMLInputFactory f = XMLInputFactory.newInstance();
 		XMLStreamReader r = f.createXMLStreamReader(IOUtils.toInputStream(xml.toString(), Charset.forName("UTF-8")));
-		while (r.hasNext()) {
+		if (r.hasNext()) {
 			r.next();
-			if (r.isStartElement()) { // TODO Event Type
+			if (r.isStartElement()) {
 				String rootElementName = r.getName().getLocalPart();
+				l.trace("parseContent():: Root Start Element [{}]", rootElementName);
 				if ("content".equals(rootElementName)) {
 					int depth = 0;
 					while (r.hasNext() && depth >= 0) {
@@ -167,30 +172,41 @@ public class DppFactory {
 							depth++;
 							String name = r.getName().getLocalPart();
 							switch (name) {
-							case "emergency_types":
-								content.setEmergencyType(parseEmergencyType());
+							case "emergency_types": ///Provoz omezen, Zpoždění spojů, Provoz zastaven
+								l.trace("parseContent():: Parsing emergency types.");
+								if (r.hasText()){
+									content.setEmergencyType(parseEmergencyType());
+								}
+								else {
+									l.warn("parseContent:: emergency_types contain no text data.");
+								}
 								break;
 							case "time_start":
+								l.trace("parseContent():: Parsing start time.");
 								content.setStart(parseTimeStart());
 								break;
 							case "time_stop":
+								l.trace("parseContent():: Parsing stop time.");
 								content.setStop(parseTimeStop());
 								break;
 							case "time_final_stop":
+								l.trace("parseContent():: Parsing final stop time.");
 								content.setFinalStop(parseTimeFinalStop());
 								break;
 							case "integrated_rescue_system":
+								l.trace("parseContent():: Parsing integrated rescue system involved.");
 								// do nothing
 								break;
 							case "aff_line_types":
+								l.trace("parseContent():: Parsing line types.");
 								// do nothing
 								break;
 							case "aff_lines":
-								content.setLines(parseAffectedLines());
+								l.trace("parseContent():: Parsing affected lines.");								
+								content.setLines(parseAffectedLines(r.getElementText()));
 								break;
 							default:
-								l.warn("parseContent(): Unsupported content type [{}]", name);
-
+								l.info("parseContent(): Unsupported content type [{}]", name);
 							}
 						}
 					}
@@ -231,11 +247,16 @@ public class DppFactory {
 		return finalStop;
 	}
 
-	// TODO ER
-	private String parseAffectedLines() {
-		String lines = null;
-
-		return lines;
+	private Collection<String> parseAffectedLines(String linesStr) {		
+		l.debug("parseAffectedLines:: Parsing lines [{}]", linesStr);
+		List<String> lines = new ArrayList<String>();
+		if (linesStr != null && linesStr.trim().length() > 0){
+			String[] rawLines = linesStr.split(",");
+			for (String l : rawLines){
+				lines.add(l.trim());
+			}
+		}
+		return Collections.unmodifiableCollection(lines);
 	}
 
 	private static class Content {
@@ -246,7 +267,7 @@ public class DppFactory {
 		private String finalStop;
 		private String integratedRescueSystem;
 		private List<String> lineTypes;
-		private String lines;
+		private Collection<String> lines = Collections.<String>emptyList();
 
 		public String getSection() {
 			return section;
@@ -304,12 +325,13 @@ public class DppFactory {
 			this.lineTypes = lineTypes;
 		}
 
-		public String getLines() {
+		public Collection<String> getLines() {
 			return lines;
 		}
 
-		public void setLines(String lines) {
-			this.lines = lines;
+		public void setLines(Collection<String> lines) {
+			this.lines = new ArrayList<>();
+			this.lines.addAll(lines);
 		}
 
 	}

@@ -34,11 +34,19 @@ public class DppFactoryTest {
 	}
 	
 	@Test
-	public void testStatusUpdatesSimpleLine() throws StatusUpdateException, IOException {
+	public void testStatusUpdatesLines() throws StatusUpdateException, IOException {
 		DppFactory dppFactory = new DppFactory();
 		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_SIMPLE)));
 		StatusUpdate su = updates.get(0);
-		assertEquals("Unexpected RSS item line!", "112", su.getLines());
+		assertFalse("Unuexpected empty lines list.", su.getLines().isEmpty());
+	}
+	
+	@Test
+	public void testStatusUpdatesLine() throws StatusUpdateException, IOException {
+		DppFactory dppFactory = new DppFactory();
+		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_SIMPLE)));
+		StatusUpdate su = updates.get(0);
+		assertTrue("Expected line is not present.", su.getLines().contains("112"));
 	}
 	
 	@Ignore
