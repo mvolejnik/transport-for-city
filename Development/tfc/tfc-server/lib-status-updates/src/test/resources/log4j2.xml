@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<Appenders>
-		<Appender name="NULL" class="org.apache.log4j.varia.NullAppender"/>
+		<Appender name="NULL" class="org.apache.log4j.varia.NullAppender" />
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %-5p [%t] %c{1.} - %m%n" />
+		</Console>
 	</Appenders>
 	<Loggers>
-		<Root level="error">
+		<Root level="trace">
 			<AppenderRef ref="NULL" />
 		</Root>
 	</Loggers>
