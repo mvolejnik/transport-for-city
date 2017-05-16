@@ -20,6 +20,9 @@ import app.tfc.server.status.StatusUpdateException;
 public class DppFactoryTest {
 
 	private static final String RSS_DPP_SIMPLE = "src/test/resources/cz.dpp/simple.xml";
+	private static final String RSS_DPP_EMPTY = "src/test/resources/cz.dpp/empty.xml";
+	private static final String RSS_DPP_GUID_MISSING = "src/test/resources/cz.dpp/guid-missing.xml";
+	private static final String RSS_DPP_GUID_EMPTY = "src/test/resources/cz.dpp/guid-empty.xml";
 	
 	@Test
 	@Tag("fast")
@@ -30,6 +33,7 @@ public class DppFactoryTest {
 		StatusUpdate su = updates.get(0);
 		assertEquals("ul. Povltavská, Pod lisem a Trojská (28.09. 09:30 - 28.09. 12:30)", su.getTitle(), "Unexpected RSS item title!");
 	}
+	
 	
 	@Test
 	@Tag("fast")
@@ -81,4 +85,52 @@ public class DppFactoryTest {
 		assertEquals("BUS", su.getType(), "Unexpected RSS item type!");
 	}
 	*/
+	
+	@Test
+	public void testStatusUpdatesEmptyTitle() throws StatusUpdateException, IOException {
+		DppFactory dppFactory = new DppFactory();
+		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_EMPTY)));
+		StatusUpdate su = updates.get(0);
+		assertEquals("Unexpected RSS item title!", "", su.getTitle());
+	}
+	
+	@Test
+	public void testStatusUpdatesEmptyDescription() throws StatusUpdateException, IOException {
+		DppFactory dppFactory = new DppFactory();
+		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_EMPTY)));
+		StatusUpdate su = updates.get(0);
+		assertEquals("Unexpected RSS item description!", "", su.getDescription());
+	}
+	
+	@Test
+	public void testStatusUpdatesEmptyLine() throws StatusUpdateException, IOException {
+		DppFactory dppFactory = new DppFactory();
+		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_EMPTY)));
+		StatusUpdate su = updates.get(0);
+		assertTrue("No lines should be found.", su.getLines().isEmpty());
+	}
+	
+	@Test
+	public void testStatusUpdatesEmptyType() throws StatusUpdateException, IOException {
+		DppFactory dppFactory = new DppFactory();
+		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_EMPTY)));
+		StatusUpdate su = updates.get(0);
+		assertEquals("Unexpected outage type.", "", su.getType());
+	}
+	
+	@Test
+	public void testStatusUpdatesMissingGuid() throws StatusUpdateException, IOException {
+		DppFactory dppFactory = new DppFactory();
+		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_GUID_MISSING)));
+		StatusUpdate su = updates.get(0);
+		assertNotNull("Unexpected UUID for missing GUID.", su.getUuid());
+	}
+	
+	@Test
+	public void testStatusUpdatesEmptyGuid() throws StatusUpdateException, IOException {
+		DppFactory dppFactory = new DppFactory();
+		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_GUID_EMPTY)));
+		StatusUpdate su = updates.get(0);
+		assertNotNull("Unexpected UUID for empty GUID.", su.getType());
+	}
 }

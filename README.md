@@ -12,7 +12,7 @@ Most Wanted Cities:
 * Wien
 * Ostrava - http://www.dpo.cz/aktuality/udalosti.html
 
-Operator with no status updates:
+Operators with no status updates:
 * Köln
 
 ISO 3166-1 Country code - http://en.wikipedia.org/wiki/ISO_3166-1
