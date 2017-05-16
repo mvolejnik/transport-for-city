@@ -138,6 +138,7 @@ public class DppFactory {
 					try {
 						Content c = parseContent(text.getData());
 						lines.addAll(c.getLines());
+						type = c.getEmergencyType();
 					} catch (DOMException | XMLStreamException e) {
 						l.warn("Unable to parse RSS Item Content Data", e);
 						l.debug("parseStatusUpdate():: [{}]", text);
@@ -174,12 +175,7 @@ public class DppFactory {
 							switch (name) {
 							case "emergency_types": ///Provoz omezen, Zpoždění spojů, Provoz zastaven
 								l.trace("parseContent():: Parsing emergency types.");
-								if (r.hasText()){
-									content.setEmergencyType(parseEmergencyType());
-								}
-								else {
-									l.warn("parseContent:: emergency_types contain no text data.");
-								}
+								content.setEmergencyType(r.getElementText());
 								break;
 							case "time_start":
 								l.trace("parseContent():: Parsing start time.");

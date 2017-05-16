@@ -49,6 +49,14 @@ public class DppFactoryTest {
 		assertTrue("Expected line is not present.", su.getLines().contains("112"));
 	}
 	
+	@Test
+	public void testStatusUpdatesType() throws StatusUpdateException, IOException {
+		DppFactory dppFactory = new DppFactory();
+		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_SIMPLE)));
+		StatusUpdate su = updates.get(0);
+		assertEquals("Unexpected outage type.", "Provoz omezen", su.getType());
+	}
+	
 	@Ignore
 	@Test	
 	public void testStatusUpdatesSimpleType() throws StatusUpdateException, IOException {
@@ -57,5 +65,4 @@ public class DppFactoryTest {
 		StatusUpdate su = updates.get(0);
 		assertEquals("Unexpected RSS item type!", "BUS", su.getType());
 	}
-	
 }
