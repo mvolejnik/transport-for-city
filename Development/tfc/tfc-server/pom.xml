@@ -5,6 +5,7 @@
 		<groupId>app.tfc</groupId>
 		<artifactId>tfc-build</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath/>
 	</parent>
 	<groupId>app.tfc.server</groupId>
 	<artifactId>tfc-server</artifactId>

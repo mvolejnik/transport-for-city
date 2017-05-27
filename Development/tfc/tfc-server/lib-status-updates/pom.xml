@@ -8,11 +8,21 @@
 		<groupId>app.tfc.server</groupId>
 		<artifactId>tfc-server</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath/>
 	</parent>
 	<artifactId>lib-status-updates</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>lib-status-updates</name>
 	<url>http://maven.apache.org</url>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<inherited>true</inherited>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>app.tfc.server</groupId>

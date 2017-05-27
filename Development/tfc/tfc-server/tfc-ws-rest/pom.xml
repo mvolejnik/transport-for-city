@@ -8,6 +8,7 @@
 		<groupId>app.tfc.server</groupId>
 		<artifactId>tfc-server</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath/>
 	</parent>
 
 	<artifactId>tfc-ws-rest</artifactId>
