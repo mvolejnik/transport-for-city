@@ -149,6 +149,12 @@
 					<version>2.5</version>
 				</plugin>
 
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>9.4.5.v20170502</version>
+				</plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -282,6 +288,41 @@
 				<artifactId>mariadb-java-client</artifactId>
 				<version>1.1.8</version>
 			</dependency>
+			
+			<!-- Runtime Platform -->
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-server</artifactId>
+				<version>9.4.5.v20170502</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-servlet</artifactId>
+				<version>9.4.5.v20170502</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.core</groupId>
+				<artifactId>jersey-server</artifactId>
+				<version>2.26-b04</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.containers</groupId>
+				<artifactId>jersey-container-servlet-core</artifactId>
+				<version>2.26-b04</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.containers</groupId>
+				<artifactId>jersey-container-jetty-http</artifactId>
+				<version>2.26-b04</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.media</groupId>
+				<artifactId>jersey-media-moxy</artifactId>
+				<version>2.26-b04</version>
+			</dependency>
+			
+			
+			<!-- QA -->
 
 			<dependency>
 				<groupId>junit</groupId>
