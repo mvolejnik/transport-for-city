@@ -64,6 +64,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-jetty-http</artifactId>
 		</dependency>
 		<dependency>
@@ -74,11 +78,12 @@
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-moxy</artifactId>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.glassfish.jersey.ext.rx</groupId>
 			<artifactId>jersey-rx-client-rxjava</artifactId>
-			<version>2.26-b04</version>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -91,11 +96,10 @@
 			<groupId>io.dropwizard.metrics</groupId>
 			<artifactId>metrics-core</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.codahale.metrics</groupId>
-			<artifactId>metrics-annotation</artifactId>
-			<version>3.0.2</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.codahale.metrics</groupId> -->
+<!-- 			<artifactId>metrics-annotation</artifactId> -->
+<!-- 		</dependency> -->
 	</dependencies>
 
 </project>
