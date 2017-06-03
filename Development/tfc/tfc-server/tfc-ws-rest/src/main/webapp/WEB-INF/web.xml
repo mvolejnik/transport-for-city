@@ -6,41 +6,26 @@
 
 	<display-name>Transport for City - REST WS</display-name>
 
-    <servlet-mapping>
-        <servlet-name>javax.ws.rs.core.Application</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>
-
-
-<!--
-
-   <servlet>
-        <display-name>TFC REST WS Servlet</display-name>
-        <servlet-name>javax.ws.rs.core.Application</servlet-name>
-        <init-param>
-            <param-name>javax.ws.rs.core.Application</param-name>
-            <param-value>app.tfc.server.ws.rs.RestApplication</param-value>
-        </init-param>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>javax.ws.rs.core.Application</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
-    -->
-
-	<!--
-		<servlet>
-		<servlet-name>app.tfc.server.ws.rs.RestApplication</servlet-name>
-		<servlet-class>app.tfc.server.ws.rs.RestApplication</servlet-class>
+	<servlet>
+		<servlet-name>javax.ws.rs.core.Application</servlet-name>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>app.tfc.server.ws.rs</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jersey.config.server.tracing.type</param-name>
+			<param-value>ALL</param-value> <!-- TODO -->
+		</init-param>
+		<init-param>
+			<param-name> jersey.config.server.tracing.threshold</param-name>
+			<param-value>TRACE</param-value> <!-- TODO -->
+		</init-param>
 		<load-on-startup>1</load-on-startup>
-		</servlet>
-	-->
+	</servlet>
 
-	<!--
-		<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>javax.ws.rs.core.Application</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
-		</servlet-mapping>
-	-->
+	</servlet-mapping>
 
 </web-app>

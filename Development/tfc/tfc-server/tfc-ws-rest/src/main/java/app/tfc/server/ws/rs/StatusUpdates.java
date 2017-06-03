@@ -13,7 +13,7 @@ public class StatusUpdates {
 	private static final Logger l = LogManager.getLogger(StatusUpdates.class);
 	
 	@GET
-	@Path("/countires/{country}/cities/{city}/operators/{operator}/lines")
+	@Path("/countries/{country}/cities/{city}/operators/{operator}/lines")
 	@Produces("application/json")
 	public void status(){
 		l.debug("status()::");

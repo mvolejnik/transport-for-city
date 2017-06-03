@@ -22,6 +22,7 @@ import app.tfc.server.management.Metrics;
 import app.tfc.server.model.Cities;
 import app.tfc.server.model.Countries;
 import app.tfc.server.model.Lines;
+import app.tfc.server.model.Operators;
 import app.tfc.server.ws.json.JsonIdentifiables;
 
 import static app.tfc.server.management.Metrics.MetricsNames.*;
@@ -106,7 +107,7 @@ public class Transport {
 					l.debug("write()::");
 					final Timer.Context tc = T_OPERATORS.time();
 					try {
-						identifialbes.identifiables(output, Cities.PROTOTYPE);//TODO
+						identifialbes.identifiables(output, Operators.PROTOTYPE);//TODO
 					} catch (Exception e) {
 						l.error("write():: Unspecific Error occured!", e);
 						throw new WebApplicationException(e);
