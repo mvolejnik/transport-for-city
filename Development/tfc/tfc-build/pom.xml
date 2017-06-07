@@ -354,6 +354,19 @@
 				<version>2.26-b03</version>
 			</dependency>
 			
+			<!-- Scheduling -->
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>2.3.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz-jobs</artifactId>
+				<version>2.3.0</version>
+			</dependency>
+			
+			
 			<!-- QA -->
 
 			<dependency>
