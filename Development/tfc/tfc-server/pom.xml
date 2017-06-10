@@ -18,5 +18,6 @@
     <module>tfc-core</module>
     <module>tfc-ws-rest</module>
     <module>lib-status-updates</module>
+    <module>tfc-web-scheduler</module>
   </modules>
 </project>

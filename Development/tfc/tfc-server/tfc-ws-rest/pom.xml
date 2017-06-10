@@ -14,7 +14,7 @@
 	<artifactId>tfc-ws-rest</artifactId>
 	<packaging>war</packaging>
 
-	<name>Trnasport for City - REST Web Application</name>
+	<name>Transport for City - REST Web Application</name>
 	<url>http://maven.apache.org</url>
 
 	<build>
@@ -26,7 +26,7 @@
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webApp>
-						<contextPath>/tfc</contextPath>
+						<contextPath>/tfc/rest</contextPath>
 					</webApp>
 				</configuration>
 			</plugin>

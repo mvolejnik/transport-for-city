@@ -3,11 +3,11 @@ package app.tfc.server.status;
 public class StatusUpdateBuilder {
 
 	public StatusUpdateBuilder() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public StatusUpdate create(){
+	public StatusUpdate create(String operator){
+	  
 		return null;
 	}
 
