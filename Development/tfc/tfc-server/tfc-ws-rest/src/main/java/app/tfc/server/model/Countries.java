@@ -8,8 +8,9 @@ public class Countries extends AbstractIdentificationList<Country> {
 
 	static {
 		PROTOTYPE = new Countries();
-		PROTOTYPE.add(new Country("CZ", "Czech Republic"));
-		PROTOTYPE.add(new Country("DE", "Germany"));
+		PROTOTYPE.add(new Country("CZ", "Czech Republic", "Česká republika"));
+		PROTOTYPE.add(new Country("DE", "Germany", "Deutschland"));
+		PROTOTYPE.add(new Country("JP", "Japan", "日本国"));
 		PROTOTYPE.add(new Country("UK", "United Kingdom"));
 	}
 	

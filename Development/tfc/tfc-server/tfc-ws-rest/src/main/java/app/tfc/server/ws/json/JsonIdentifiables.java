@@ -19,6 +19,7 @@ public class JsonIdentifiables {
 	
 	private static final String CITY_CODE = "code" ;
 	private static final String CITY_NAME = "name" ;
+	private static final String CITY_LOCAL_NAME = "localName" ;
 	
 	public void identifiables(OutputStream citiesOs, Identifiables<? extends Identifiable> objects){
 		l.debug("identifiables()::");
@@ -30,6 +31,9 @@ public class JsonIdentifiables {
 			gen.writeStartObject();
 			gen.write(CITY_CODE, i.getCode());
 			gen.write(CITY_NAME, i.getName());
+			if (i.getLocalName() != null){//TODO stringtuils
+			  gen.write(CITY_LOCAL_NAME, i.getLocalName());
+			}
 			gen.writeEnd();
 		}
 		gen.writeEnd();

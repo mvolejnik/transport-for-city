@@ -30,47 +30,18 @@ import static app.tfc.server.management.Metrics.MetricsNames.*;
 @Path("/transport")
 public class Transport {
 	
-	private static final Logger l = LogManager.getLogger(Transport.class);
-	private static final Timer T_COUNTRIES = Metrics.REGISTRY.timer(MetricRegistry.name(Transport.class, METRICS_TRANSPORT_COUTNRIES.getName()));
 	private static final Timer T_CITIES = Metrics.REGISTRY.timer(MetricRegistry.name(Transport.class, METRICS_TRANSPORT_CITIES.getName()));
-	private static final Timer T_OPERATORS = Metrics.REGISTRY.timer(MetricRegistry.name(Transport.class, METRICS_TRANSPORT_OPERATORS.getName()));
 	private static final Timer T_LINES = Metrics.REGISTRY.timer(MetricRegistry.name(Transport.class, METRICS_TRANSPORT_LINES.getName()));
 
+	private static final Logger l = LogManager.getLogger(Transport.class);
+	
 	JsonIdentifiables identifialbes = new JsonIdentifiables();
 
 	@GET
-	@Path("/countries")
-	@Produces("application/json")
-	public Response countries() {
-		l.debug("countries()::");
-		try {
-			StreamingOutput stream = new StreamingOutput() {
-				@Override
-				public void write(OutputStream output) throws IOException, WebApplicationException {
-					l.debug("write()::");
-					final Timer.Context tc = T_COUNTRIES.time();
-					try {
-						identifialbes.identifiables(output, Countries.PROTOTYPE);//TODO
-					} catch (Exception e) {
-						l.error("write():: Unspecific Error occured!", e);
-						throw new WebApplicationException(e);
-					} finally {
-						tc.stop();
-					}
-				}
-			};
-			return Response.ok(stream).build();
-		} catch (Exception e){
-			l.error("countries():: Unspecific Error occured!", e);
-			return Response.serverError().status(Status.INTERNAL_SERVER_ERROR).build();
-		}
-	}
-
-	@GET
-	@Path("/countries/{country}/cities")
-	@Produces("application/json")
+	@Path("/cities")
+	@Produces("application/json;charset=utf-8")
 	//@Timed(name=METRICS_TRANSPORT_CITIES)
-	public Response cities(@PathParam("country") String country) {
+	public Response cities() {
 		l.debug("cities()::");
 		try {
 			StreamingOutput stream = new StreamingOutput() {
@@ -96,38 +67,10 @@ public class Transport {
 	}
 
 	@GET
-	@Path("/countries/{country}/cities/{city}/operators/{operator}")
-	@Produces("application/json")
-	public Response operator(@PathParam("country") String country, @PathParam("city") String city, @PathParam("operator") String operator) {
-		l.debug("operators()::");
-		try {
-			StreamingOutput stream = new StreamingOutput() {
-				@Override
-				public void write(OutputStream output) throws IOException, WebApplicationException {
-					l.debug("write()::");
-					final Timer.Context tc = T_OPERATORS.time();
-					try {
-						identifialbes.identifiables(output, Operators.PROTOTYPE);//TODO
-					} catch (Exception e) {
-						l.error("write():: Unspecific Error occured!", e);
-						throw new WebApplicationException(e);
-					} finally {
-						tc.stop();
-					}
-				}
-			};
-			return Response.ok(stream).build();
-		} catch (Exception e){
-			l.error("Unspecific Error occured!", e);
-			return Response.serverError().status(Status.INTERNAL_SERVER_ERROR).build();
-		}
-	}
-
-	@GET
-	@Path("/countries/{country}/cities/{city}/lines")
-	@Produces("application/json")
-	public Response lines(@PathParam("country") String country, @PathParam("city") String city) {
-		l.debug("lines():: Country Code [%s], City Code [%s], Operator [%s]");
+	@Path("/cities/{city}/lines")
+	@Produces("application/json;charset=utf-8")
+	public Response lines(@PathParam("city") String city) {
+		l.debug("lines():: City Code [%s], Operator [%s]");
 		try {
 			StreamingOutput stream = new StreamingOutput() {
 				@Override

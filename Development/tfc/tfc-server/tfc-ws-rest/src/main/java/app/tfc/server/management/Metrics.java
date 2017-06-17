@@ -20,9 +20,7 @@ public class Metrics {
 	}
 	
 	public static enum MetricsNames{
-		METRICS_TRANSPORT_COUTNRIES("countries"),
 		METRICS_TRANSPORT_CITIES("cities"),
-		METRICS_TRANSPORT_OPERATORS("operators"),
 		METRICS_TRANSPORT_LINES("lines");
 		
 		private final String name;

@@ -10,6 +10,6 @@ public interface Identifiables<E extends Identifiable> extends Iterable<E> {
 
 	public Iterator<E> iterator();
 	
-	public String getName(); 
-
+	public String getName();
+	
 }

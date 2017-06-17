@@ -22,7 +22,7 @@ public class Lines extends AbstractIdentificationList<Line> {
 		PROTOTYPE.add(new Line("102", "Bus 102"));
 		
 		PROTOTYPE.add(new Line("Circle", "Circle Line"));
-		PROTOTYPE.add(new Line("District", "District Line"));
+		PROTOTYPE.add(new Line("District", "Circle Line"));
 		PROTOTYPE.add(new Line("Hammersmith & City", "Hammersmith & City Line"));
 		PROTOTYPE.add(new Line("DLR", "DLR"));
 		
@@ -30,9 +30,9 @@ public class Lines extends AbstractIdentificationList<Line> {
 		PROTOTYPE.add(new Line("U2", "U-Bahn Pankow – Ruhleben"));
 		PROTOTYPE.add(new Line("U3", "U-Bahn Nollendorfplatz – Krumme Lanke"));
 		
-		PROTOTYPE.add(new Line("Ginza Line", "銀座線"));
-		PROTOTYPE.add(new Line("Marunouchi Line", "丸ノ内線"));
-		PROTOTYPE.add(new Line("Marunouchi Line Branch Line", "丸ノ内線分岐線"));
+		PROTOTYPE.add(new Line("Line 3", "Ginza Line", "銀座線"));
+		PROTOTYPE.add(new Line("Line 4", "Marunouchi Line", "丸ノ内線"));
+
 	}
 	
 	@Override
