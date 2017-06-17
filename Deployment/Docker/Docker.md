@@ -2,9 +2,10 @@
 
 Docker container for TFC is based on jetty<openjdk<alpine
 
+### Prereq
+WAR files have to be in the root of context
+
 ### Build
-#### Prereq
-WAR file have to bi in the root of context
 ```
 docker build -t tfc .
 Sending build context to Docker daemon 16.95 MB
@@ -24,7 +25,7 @@ Step 5/5 : ENTRYPOINT /docker-entrypoint.sh
  ---> Running in 6e08875f6d06
  ---> d95bed780ab7
 Removing intermediate container 6e08875f6d06
-**Successfully built d95bed780ab7**
+Successfully built d95bed780ab7
 ```
 
 ### Run
@@ -51,12 +52,12 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 2017-06-17 15:26:22.212:INFO:oeja.AnnotationConfiguration:main: Scanning elapsed time=606ms
 2017-06-17 15:26:22.786:INFO:oejsh.ContextHandler:main: Started o.e.j.w.WebAppContext@14a50707{/tfc-ws-rest,file:///tmp/jetty/jetty-0.0.0.0-8080-tfc-ws-rest.war-_tfc-ws-rest-any-4164143925779233696.dir/webapp/,AVAILABLE}{/tfc-ws-rest.war}
 2017-06-17 15:26:22.789:INFO:oejs.AbstractConnector:main: Started ServerConnector@18be83e4{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
-**2017-06-17 15:26:22.789:INFO:oejs.Server:main: Started @2965ms**
+2017-06-17 15:26:22.789:INFO:oejs.Server:main: Started @2965ms
 ```
 
 ### Push to repository
 Tag image locally and push it to the repository
 ```
-docker tag tfc:latest __user__/tfc:0.0.1
-docker push __user__/tfc:0.0.1
+docker tag tfc:latest user/tfc:0.0.1
+docker push user/tfc:0.0.1
 ```
