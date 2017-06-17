@@ -53,3 +53,10 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 2017-06-17 15:26:22.789:INFO:oejs.AbstractConnector:main: Started ServerConnector@18be83e4{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
 **2017-06-17 15:26:22.789:INFO:oejs.Server:main: Started @2965ms**
 ```
+
+### Push to repository
+Tag image locally and push it to the repository
+```
+docker tag tfc:latest __user__/tfc:0.0.1
+docker push __user__/tfc:0.0.1
+```
