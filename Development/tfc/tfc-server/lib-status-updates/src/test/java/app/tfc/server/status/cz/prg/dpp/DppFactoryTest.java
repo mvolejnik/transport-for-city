@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import app.tfc.server.status.StatusUpdate;
 import app.tfc.server.status.StatusUpdateException;
@@ -87,50 +87,62 @@ public class DppFactoryTest {
 	*/
 	
 	@Test
+  @Tag("fast")
+  @DisplayName("Empty title.")
 	public void testStatusUpdatesEmptyTitle() throws StatusUpdateException, IOException {
 		DppFactory dppFactory = new DppFactory();
 		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_EMPTY)));
 		StatusUpdate su = updates.get(0);
-		assertEquals("Unexpected RSS item title!", "", su.getTitle());
+		assertEquals("", su.getTitle(), "Unexpected RSS item title!");
 	}
 	
 	@Test
+  @Tag("fast")
+  @DisplayName("Emptry description.")
 	public void testStatusUpdatesEmptyDescription() throws StatusUpdateException, IOException {
 		DppFactory dppFactory = new DppFactory();
 		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_EMPTY)));
 		StatusUpdate su = updates.get(0);
-		assertEquals("Unexpected RSS item description!", "", su.getDescription());
+		assertEquals("", su.getDescription(), "Unexpected RSS item description!");
 	}
 	
 	@Test
+  @Tag("fast")
+  @DisplayName("Empty line.")
 	public void testStatusUpdatesEmptyLine() throws StatusUpdateException, IOException {
 		DppFactory dppFactory = new DppFactory();
 		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_EMPTY)));
 		StatusUpdate su = updates.get(0);
-		assertTrue("No lines should be found.", su.getLines().isEmpty());
+		assertTrue(su.getLines().isEmpty(), "No lines should be found.");
 	}
 	
 	@Test
+  @Tag("fast")
+  @DisplayName("Empty Transport mean type.")
 	public void testStatusUpdatesEmptyType() throws StatusUpdateException, IOException {
 		DppFactory dppFactory = new DppFactory();
 		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_EMPTY)));
 		StatusUpdate su = updates.get(0);
-		assertEquals("Unexpected outage type.", "", su.getType());
+		assertEquals("", su.getType(), "Unexpected outage type.");
 	}
 	
 	@Test
+  @Tag("fast")
+  @DisplayName("Missing GUID")
 	public void testStatusUpdatesMissingGuid() throws StatusUpdateException, IOException {
 		DppFactory dppFactory = new DppFactory();
 		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_GUID_MISSING)));
 		StatusUpdate su = updates.get(0);
-		assertNotNull("Unexpected UUID for missing GUID.", su.getUuid());
+		assertNotNull(su.getUuid(), "Unexpected UUID for missing GUID.");
 	}
 	
 	@Test
+  @Tag("fast")
+  @DisplayName("Empty GUID")
 	public void testStatusUpdatesEmptyGuid() throws StatusUpdateException, IOException {
 		DppFactory dppFactory = new DppFactory();
 		List<StatusUpdate> updates = dppFactory.statusUpdates(FileUtils.openInputStream(new File(RSS_DPP_GUID_EMPTY)));
 		StatusUpdate su = updates.get(0);
-		assertNotNull("Unexpected UUID for empty GUID.", su.getType());
+		assertNotNull(su.getType(), "Unexpected UUID for empty GUID.");
 	}
 }

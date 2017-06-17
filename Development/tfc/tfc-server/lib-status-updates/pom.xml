@@ -12,7 +12,7 @@
 	</parent>
 	<artifactId>lib-status-updates</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lib-status-updates</name>
+	<name>Transport for City - Status Update Library</name>
 	<url>http://maven.apache.org</url>
 	<build>
 		<plugins>
