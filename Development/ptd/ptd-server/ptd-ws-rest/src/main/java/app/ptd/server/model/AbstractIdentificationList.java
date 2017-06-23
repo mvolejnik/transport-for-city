@@ -25,7 +25,7 @@ public abstract class AbstractIdentificationList<E extends Identifiable> impleme
 	}
 
 	/* (non-Javadoc)
-	 * @see app.tfc.server.model.Identifiables#iterator()
+	 * @see app.ptd.server.model.Identifiables#iterator()
 	 */
 	@Override
 	public Iterator<E> iterator() {
