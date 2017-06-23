@@ -15,3 +15,5 @@ Most Wanted Cities:
 Operator with no status updates:
 * Köln
 
+ISO 3166-1 Country code - http://en.wikipedia.org/wiki/ISO_3166-1
+UN/LOCODE City Code - http://www.unece.org/cefact/locode/service/location
