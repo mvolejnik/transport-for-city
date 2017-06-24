@@ -19,5 +19,6 @@
     <module>ptd-ws-rest</module>
     <module>lib-status-updates</module>
     <module>ptd-web-scheduler</module>
+    <module>lib-remote-resources</module>
   </modules>
 </project>
