@@ -15,11 +15,11 @@ import org.apache.logging.log4j.Logger;
 
 import app.ptd.server.remoteresources.RemoteResourceException;
 
-public class HttpResources {
+public class HttpResource {
   
-  private static final Logger l = LogManager.getLogger(HttpResources.class);
+  private static final Logger l = LogManager.getLogger(HttpResource.class);
   
-  public InputStream remoteResource(URL resource) throws RemoteResourceException{
+  public InputStream content(URL resource) throws RemoteResourceException{
     try (CloseableHttpClient httpclient = HttpClients.createDefault();){
       HttpGet httpGet;
       httpGet = new HttpGet(resource.toURI());
