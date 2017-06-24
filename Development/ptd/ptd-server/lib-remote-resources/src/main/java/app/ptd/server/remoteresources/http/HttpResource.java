@@ -15,12 +15,18 @@ import org.apache.logging.log4j.Logger;
 
 import app.ptd.server.remoteresources.RemoteResourceException;
 
-public class HttpResource {
+public class HttpResource implements AutoCloseable {
   
   private static final Logger l = LogManager.getLogger(HttpResource.class);
   
+  CloseableHttpClient httpclient;
+  
+  public HttpResource() {
+    httpclient = HttpClients.createDefault();
+  }
+
   public InputStream content(URL resource) throws RemoteResourceException{
-    try (CloseableHttpClient httpclient = HttpClients.createDefault();){
+    try {
       HttpGet httpGet;
       httpGet = new HttpGet(resource.toURI());
       CloseableHttpResponse response = httpclient.execute(httpGet);
@@ -31,6 +37,11 @@ public class HttpResource {
       throw new RemoteResourceException(e);
     }    
     
+  }
+
+  @Override
+  public void close() throws IOException {
+    httpclient.close();
   }
   
 }
