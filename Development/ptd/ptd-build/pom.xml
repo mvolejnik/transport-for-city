@@ -320,6 +320,12 @@
 				<artifactId>jetty-servlet</artifactId>
 				<version>9.4.5.v20170502</version>
 			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-webapp -->
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-webapp</artifactId>
+				<version>9.4.5.v20170502</version>
+			</dependency>
 			<dependency>
 				<groupId>org.glassfish.jersey.core</groupId>
 				<artifactId>jersey-server</artifactId>
