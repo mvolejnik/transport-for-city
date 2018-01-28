@@ -8,18 +8,18 @@ node {
     }
     
 	stage('Maven build') {
-		withMaven(
-        	maven: 'M3'
-    	){
-    		steps {
-    			dir('Development/ptd/ptd-build') {
-      				sh "mvn clean install"
-      			}
-      			dir('Development/ptd') {
-      				sh "mvn clean install"
-      			}    
-    		}    		
-    	}
+		steps {
+			withMaven(
+	        	maven: 'M3'
+	    	){
+	    		dir('Development/ptd/ptd-build') {
+	      			sh "mvn clean install"
+	      		}
+	      		dir('Development/ptd') {
+	      			sh "mvn clean install"
+	      		}    
+	    	}    		
+	    }
 	}
 }
 	
