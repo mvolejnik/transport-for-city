@@ -2,9 +2,17 @@
 
 node {
 	echo "Public Transport Delays Build"
+	
 	stage('Clone sources') {
         git 'https://github.com/mvolejnik/public-transport-delays.git'
     }
-
+    
+	stage('Maven build') {
+		withMaven(
+        	maven: 'M3'
+    	){
+      		sh "mvn clean install"
+    	}
+	}
 }
 	
