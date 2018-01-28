@@ -15,6 +15,12 @@ node {
       			sh "mvn clean install"
       		}
       		dir('Development/ptd') {
+      			sh "mvn -N clean install"
+      		}
+      		dir('Development/ptd-server') {
+      			sh "mvn -N clean install"
+      		}
+      		dir('Development/ptd') {
       			sh "mvn clean install"
       		}    
     	}    		
