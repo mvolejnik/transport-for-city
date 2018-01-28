@@ -7,7 +7,7 @@ node {
         git 'https://github.com/mvolejnik/public-transport-delays.git'
     }
     
-	stage('Maven build') {
+	stage('Build Snapshot') {
 		withMaven(
         	maven: 'M3'
     	){
@@ -17,7 +17,7 @@ node {
       		dir('Development/ptd') {
       			sh "mvn -N clean install"
       		}
-      		dir('Development/ptd-server') {
+      		dir('Development/ptd/ptd-server') {
       			sh "mvn -N clean install"
       		}
       		dir('Development/ptd') {
