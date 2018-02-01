@@ -28,6 +28,7 @@
 					<webApp>
 						<contextPath>/ptd/rest</contextPath>
 					</webApp>
+					<jettyXml>src/main/etc/jetty.xml,src/main/etc/jetty-http.xml,src/main/etc/jetty-ssl-context.xml,src/main/etc/jetty-ssl.xml,src/main/etc/jetty-https.xml</jettyXml>
 				</configuration>
 			</plugin>
 		</plugins>
