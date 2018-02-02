@@ -42,7 +42,7 @@ public class HttpResource implements AutoCloseable {
         httpGet.addHeader(ETAG_IF_NONE_MATCH, etag);
       }
       CloseableHttpResponse response = httpclient.execute(httpGet);
-      if (response.getStatusLine().getStatusCode() == 403) {
+      if (response.getStatusLine().getStatusCode() == 403 || response.getEntity() == null) {
         resource = Optional.empty();
       } else {
       HttpEntity entity = response.getEntity();
@@ -50,7 +50,7 @@ public class HttpResource implements AutoCloseable {
       }
       return resource;
     } catch (URISyntaxException | IOException e) {
-      l.error("remoteResource::", e);
+      l.error("content::", e);
       throw new RemoteResourceException(e);
     }    
     
