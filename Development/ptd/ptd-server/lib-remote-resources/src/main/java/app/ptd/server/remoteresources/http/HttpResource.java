@@ -29,7 +29,7 @@ public class HttpResource implements AutoCloseable {
     httpclient = HttpClients.createDefault();
   }
 
-  public Optional<Resource> content(URL resource) throws RemoteResourceException{
+  public Optional<Resource> content(URL resourceUrl) throws RemoteResourceException{
     return content(resource, null);
   }
   
