@@ -30,7 +30,7 @@ public class HttpResource implements AutoCloseable {
   }
 
   public Optional<Resource> content(URL resourceUrl) throws RemoteResourceException{
-    return content(resource, null);
+    return content(resourceUrl, null);
   }
   
   public Optional<Resource> content(URL resourceUrl, String etag) throws RemoteResourceException{
