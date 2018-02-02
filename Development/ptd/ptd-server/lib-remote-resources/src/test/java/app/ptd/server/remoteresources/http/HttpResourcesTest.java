@@ -44,7 +44,8 @@ public class HttpResourcesTest {
   public void testRemoteResource() throws Exception {
     initAll();
     try (HttpResource httpResource = new HttpResource();
-        InputStream is = httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json"))) {
+        InputStream is = httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json")).get().content()
+        ) {
       byte[] b = new byte[17];
       is.read(b);      assertEquals("{\"test\": \"test\"}", new String(b).substring(0, 16), "Unexpected Remote Resource Content.");
     } finally {

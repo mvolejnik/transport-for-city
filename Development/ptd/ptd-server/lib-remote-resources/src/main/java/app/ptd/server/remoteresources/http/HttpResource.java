@@ -1,9 +1,9 @@
 package app.ptd.server.remoteresources.http;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Optional;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -21,24 +21,34 @@ public class HttpResource implements AutoCloseable {
   
   private static final Logger l = LogManager.getLogger(HttpResource.class);
   
+  private static final String ETAG_IF_NONE_MATCH = "If-None-Match";
+
   CloseableHttpClient httpclient;
   
   public HttpResource() {
     httpclient = HttpClients.createDefault();
   }
 
-  public Resource content(URL resource) throws RemoteResourceException{
+  public Optional<Resource> content(URL resource) throws RemoteResourceException{
     return content(resource, null);
   }
   
-  public Resource content(URL resource, String etag) throws RemoteResourceException{
+  public Optional<Resource> content(URL resourceUrl, String etag) throws RemoteResourceException{
     try {
+      Optional<Resource> resource;
       HttpGet httpGet;
-      httpGet = new HttpGet(resource.toURI());
-      httpGet.addHeader(arg0, arg1);
+      httpGet = new HttpGet(resourceUrl.toURI());
+      if (etag != null) {
+        httpGet.addHeader(ETAG_IF_NONE_MATCH, etag);
+      }
       CloseableHttpResponse response = httpclient.execute(httpGet);
+      if (response.getStatusLine().getStatusCode() == 403) {
+        resource = Optional.empty();
+      } else {
       HttpEntity entity = response.getEntity();
-      return new ResourceImpl(entity.getContent());
+        resource = Optional.ofNullable(new ResourceImpl(entity.getContent()));
+      }
+      return resource;
     } catch (URISyntaxException | IOException e) {
       l.error("remoteResource::", e);
       throw new RemoteResourceException(e);
