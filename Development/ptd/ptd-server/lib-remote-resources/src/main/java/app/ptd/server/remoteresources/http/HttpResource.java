@@ -3,6 +3,8 @@ package app.ptd.server.remoteresources.http;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import org.apache.http.HttpEntity;
@@ -22,18 +24,23 @@ public class HttpResource implements AutoCloseable {
   private static final Logger l = LogManager.getLogger(HttpResource.class);
 
   private static final String ETAG_IF_NONE_MATCH = "If-None-Match";
-
+  private static final String ETAG_IF_MODIFIED_SINCE = "If-Modified-Since";
+  private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.RFC_1123_DATE_TIME;
   CloseableHttpClient httpclient;
+  
 
   public HttpResource() {
     httpclient = HttpClients.createDefault();
   }
 
   public Optional<Resource> content(URL resourceUrl) throws RemoteResourceException {
-    return content(resourceUrl, null);
+    return content(resourceUrl, null, null);
   }
 
-  public Optional<Resource> content(URL resourceUrl, String etag) throws RemoteResourceException {
+  public Optional<Resource> content(URL resourceUrl, String etag, ZonedDateTime ifModifiedSince) throws RemoteResourceException {
+    if (ifModifiedSince != null && ZonedDateTime.now().isBefore(ifModifiedSince)) {
+      throw new IllegalArgumentException("ifModifiedSince cannot be from future.");
+    }
     try {
       Optional<Resource> resource;
       HttpGet httpGet;
@@ -41,18 +48,27 @@ public class HttpResource implements AutoCloseable {
       if (etag != null) {
         httpGet.addHeader(ETAG_IF_NONE_MATCH, etag);
       }
+      if (ifModifiedSince != null) {
+        httpGet.addHeader(ETAG_IF_MODIFIED_SINCE, DATE_TIME_FORMATTER.format(ifModifiedSince));
+      }
       CloseableHttpResponse response = httpclient.execute(httpGet);
       ResponseStatusCode statusCode = new ResponseStatusCode(response.getStatusLine().getStatusCode());
       if (statusCode.isOk()) {
         HttpEntity entity = response.getEntity();
+        if (entity == null) {
+          l.error("content():: Server response does not contain any data.");
+          throw new RemoteResourceException("Missing server data.");
+        }
         resource = Optional.ofNullable(new ResourceImpl(entity.getContent()));
+      } else if (statusCode.isNotUpdated()) {
+        resource = Optional.empty();
       } else if (statusCode.isClientError()) {
-        l.error("Unable to get resource '{}' due to client error: '{}' ({}).", resourceUrl, statusCode.statusCode,
+        l.error("content():: Unable to get resource '{}' due to client error: '{}' ({}).", resourceUrl, statusCode.statusCode,
             response.getStatusLine().getReasonPhrase());
         throw new RemoteResourceException(String.format("Unable to get resource '%s' due to client error: '%s' (%s).",
             resourceUrl, statusCode.statusCode, response.getStatusLine().getReasonPhrase()));
       } else {
-        l.warn("Resource '{}' unexpected response '{}' ({}).", resourceUrl, statusCode.statusCode,
+        l.warn("content():: Resource '{}' unexpected response '{}' ({}).", resourceUrl, statusCode.statusCode,
             response.getStatusLine().getReasonPhrase());
         HttpEntity entity = response.getEntity();
         resource = entity == null ? Optional.empty() : Optional.ofNullable(new ResourceImpl(entity.getContent()));
@@ -86,7 +102,11 @@ public class HttpResource implements AutoCloseable {
     }
 
     public boolean isOk() {
-      return statusCode == 200 || statusCode == 304;
+      return statusCode == 200;
+    }
+    
+    public boolean isNotUpdated() {
+      return statusCode == 304;
     }
 
   }

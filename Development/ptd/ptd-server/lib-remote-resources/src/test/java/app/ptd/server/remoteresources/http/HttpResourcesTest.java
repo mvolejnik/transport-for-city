@@ -3,6 +3,8 @@ package app.ptd.server.remoteresources.http;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +32,8 @@ public class HttpResourcesTest {
   
   private static final String NOT_MODIFIED = "NOT_MODIFY" ;
   private static final String NOT_EXISTING_RESOURCE = "/not-existing-resource" ;
+  private static final ZonedDateTime TIME_LAST_DOWNLOADED = ZonedDateTime.parse("2018-01-01T12:00:00.00Z");
+  private static final ZonedDateTime TIME_RESOURCE_NOT_UPDATED = ZonedDateTime.parse("2018-01-01T10:00:00.00Z");
 
   @BeforeAll
   static void initAll() throws Exception {
@@ -45,6 +49,11 @@ public class HttpResourcesTest {
         public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
           if (NOT_MODIFIED.equals(request.getHeader("If-None-Match"))) {
+            response.setStatus(304);
+            baseRequest.setHandled(true);           
+          }
+          String ifModifiedSince = request.getHeader("If-Modified-Since");
+          if (ifModifiedSince != null && TIME_RESOURCE_NOT_UPDATED.isBefore(ZonedDateTime.from(DateTimeFormatter.RFC_1123_DATE_TIME.parse(ifModifiedSince))) && request.getHeader("If-None-Match") == null) {
             response.setStatus(304);
             baseRequest.setHandled(true);
           }
@@ -80,10 +89,21 @@ public class HttpResourcesTest {
   }
 
   @Test
-  public void testnotModify() throws Exception {
+  public void testNotModifyETag() throws Exception {
     initAll();
     try (HttpResource httpResource = new HttpResource();){
-        assertFalse(httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json"), NOT_MODIFIED).isPresent(), "Unmodified resource shouldn't be returned.");
+        assertFalse(httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json"), NOT_MODIFIED, null).isPresent(), "Unmodified resource shouldn't be returned.");
+    } finally {
+      tearDownAll();
+    }
+  }
+  
+  @Test
+  public void testNotModifyTime() throws Exception {
+    initAll();
+    try (HttpResource httpResource = new HttpResource();){
+      DateTimeFormatter.RFC_1123_DATE_TIME.format(TIME_LAST_DOWNLOADED);
+        assertFalse(httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json"), null, TIME_LAST_DOWNLOADED).isPresent(), "Unmodified resource shouldn't be returned.");
     } finally {
       tearDownAll();
     }
