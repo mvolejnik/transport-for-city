@@ -9,7 +9,7 @@
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Transport for City</name>
-	<url>https://github.com/mvolejnik/transport-for-city</url>
+	<url>https://github.com/mvolejnik/public-transport-delays</url>
 
 	<properties>
 		<projectVersion>0.0.1-SNAPSHOT</projectVersion>
