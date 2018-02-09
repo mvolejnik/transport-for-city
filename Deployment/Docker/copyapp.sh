@@ -2,5 +2,6 @@
 
 [ -d tmp ] || mkdir -v tmp
 
-cp -v ../../Development/tfc/tfc-server/tfc-web-scheduler/target/tfc-web-scheduler.war ./tmp/
-cp -v ../../Development/tfc/tfc-server/tfc-ws-rest/target/tfc-ws-rest.war ./tmp/
+cp -v ../../Development/ptd/ptd-server/ptd-web-scheduler/target/ptd-web-scheduler.war ./tmp/
+cp -v ../../Development/ptd/ptd-server/ptd-ws-rest/target/ptd-ws-rest.war ./tmp/
+cp -v ../../Deployment/Tls/keystore ./tmp/
