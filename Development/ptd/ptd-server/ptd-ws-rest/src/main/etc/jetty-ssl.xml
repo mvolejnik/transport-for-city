@@ -1,8 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_3.dtd">
 
+<!-- ============================================================= -->
+<!-- Base SSL configuration                                        -->
+<!-- This configuration needs to be used together with 1 or more   -->
+<!-- of jetty-https.xml or jetty-http2.xml                         -->
+<!-- ============================================================= -->
 <Configure id="Server" class="org.eclipse.jetty.server.Server">
 
+  <!-- =========================================================== -->
+  <!-- Add a SSL Connector with no protocol factories              -->
+  <!-- =========================================================== -->
   <Call  name="addConnector">
     <Arg>
       <New id="sslConnector" class="org.eclipse.jetty.server.ServerConnector">
@@ -32,6 +40,11 @@
     </Arg>
   </Call>
 
+  <!-- =========================================================== -->
+  <!-- Create a TLS specific HttpConfiguration based on the        -->
+  <!-- common HttpConfiguration defined in jetty.xml               -->
+  <!-- Add a SecureRequestCustomizer to extract certificate and    -->
+  <!-- session information                                         -->
   <!-- =========================================================== -->
   <New id="sslHttpConfig" class="org.eclipse.jetty.server.HttpConfiguration">
     <Arg><Ref refid="httpConfig"/></Arg>
