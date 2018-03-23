@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -161,6 +160,13 @@
 
 			</plugins>
 		</pluginManagement>
+		<extensions>
+			<extension>
+				<groupId>io.cloudsmith.maven.wagon</groupId>
+				<artifactId>cloudsmith-maven-wagon</artifactId>
+				<version>0.2.0</version>
+			</extension>
+		</extensions>
 	</build>
 
 	<reporting>
@@ -232,14 +238,8 @@
 				<version>3.1.0</version>
 				<scope>provided</scope>
 			</dependency>
-			<!--
-			<dependency>
-				<groupId>javax.mail</groupId>
-				<artifactId>javax.mail-api</artifactId>
-				<version>1.5.1</version>
-				<scope>compile</scope>
-			</dependency>
-			-->
+			<!-- <dependency> <groupId>javax.mail</groupId> <artifactId>javax.mail-api</artifactId> 
+				<version>1.5.1</version> <scope>compile</scope> </dependency> -->
 
 			<!-- Java Spec. -->
 
@@ -293,14 +293,8 @@
 				<version>3.1.2</version>
 				<scope>compile</scope>
 			</dependency>
-			<!--
-			<dependency>
-				<groupId>com.codahale.metrics</groupId>
-				<artifactId>metrics-annotation</artifactId>
-				<version>3.1.2</version>
-				<scope>compile</scope>
-			</dependency>
-			-->
+			<!-- <dependency> <groupId>com.codahale.metrics</groupId> <artifactId>metrics-annotation</artifactId> 
+				<version>3.1.2</version> <scope>compile</scope> </dependency> -->
 
 			<!-- JPA persistence -->
 
@@ -311,7 +305,7 @@
 				<artifactId>mariadb-java-client</artifactId>
 				<version>1.1.8</version>
 			</dependency>
-			
+
 			<!-- Runtime Platform -->
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
@@ -353,7 +347,7 @@
 				<artifactId>jersey-media-moxy</artifactId>
 				<version>2.26-b03</version>
 			</dependency>
-			
+
 			<!-- Scheduling -->
 			<dependency>
 				<groupId>org.quartz-scheduler</groupId>
@@ -365,8 +359,8 @@
 				<artifactId>quartz-jobs</artifactId>
 				<version>2.3.0</version>
 			</dependency>
-			
-			
+
+
 			<!-- QA -->
 			<dependency>
 				<groupId>org.junit.platform</groupId>
@@ -389,4 +383,36 @@
 
 		</dependencies>
 	</dependencyManagement>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>cloudsmith-api</id>
+			<name>Cloudsmith API Releases</name>
+			<url>https://dl.cloudsmith.io/public/cloudsmith/api/maven</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<repositories>
+		<repository>
+			<id>cloudsmith-api</id>
+			<name>Cloudsmith API Releases</name>
+			<url>https://dl.cloudsmith.io/public/cloudsmith/api/maven</url>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>cloudsmith.io-snapshots</id>
+			<url>cloudsmith+https://api.cloudsmith.io/packages/michal-volejnik/public-transport-delays-snapshots/</url>
+			<uniqueVersion>true</uniqueVersion>
+			<layout>default</layout>
+		</snapshotRepository>
+		<repository>
+			<id>cloudsmith.io</id>
+			<url>cloudsmith+https://api.cloudsmith.io/michal.volejnik/public-transport-delays</url>
+			<uniqueVersion>true</uniqueVersion>
+			<layout>default</layout>
+		</repository>
+	</distributionManagement>
+
 </project>

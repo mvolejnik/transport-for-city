@@ -52,5 +52,10 @@ node {
       		}    
     	}    		
 	}
+	
+	stage('Upload to repository') {
+		
+	}
+	
 }
 	
