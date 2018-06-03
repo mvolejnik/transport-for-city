@@ -63,5 +63,22 @@
 			<groupId>io.dropwizard.metrics</groupId>
 			<artifactId>metrics-core</artifactId>
 		</dependency>
+                <!-- jetty dependencies -->
+                <dependency>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jaxb-api</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>com.sun.xml.bind</groupId>
+                    <artifactId>jaxb-impl</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jaxb</groupId>
+                    <artifactId>jaxb-runtime</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>activation</artifactId>
+                </dependency>
 	</dependencies>
 </project>
