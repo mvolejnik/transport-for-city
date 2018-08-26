@@ -52,7 +52,7 @@ public class QuartzInit implements ServletContextListener {
 
   private void initQuartz(Duration delay, Duration randomInterval, Duration interval) {
     try {
-      l.info("initQuartz:: Initing Quartz Scheduler with Delay {}, random interval{}, interval {}", delay,
+      l.info("initQuartz:: Initing Quartz Scheduler with delay {}, random maximum interval {}, interval {}", delay,
           randomInterval, interval);
       Random rnd = new Random();
       DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSSZ");
@@ -64,7 +64,7 @@ public class QuartzInit implements ServletContextListener {
       String jobId = "TBD";
       Calendar startAt = (Calendar) startBaseline.clone();
       startAt.add(Calendar.SECOND, rnd.nextInt((int) randomInterval.toSeconds()));
-      l.info("initQuartz:: scheduling job [{}] to start since [{}] every [{}] seconds", jobId,
+      l.info("initQuartz:: scheduling job [{}] to start since [{}] every [{}]", jobId,
           df.format(startAt.getTime()), interval);
       JobDetail job = newJob(GetUrlResourceJob.class).withIdentity(jobId + "~job", "download").build();
       Trigger trigger = newTrigger().withIdentity(jobId + "~trigger", "download")
