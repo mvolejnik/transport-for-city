@@ -25,15 +25,6 @@
                         <target>11</target>
                         <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
-                    <!--
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.ow2.asm</groupId>
-                            <artifactId>asm</artifactId>
-                            <version>6.2.1</version>
-                        </dependency>
-                    </dependencies>
-                    -->
                 </plugin>
 
                 <plugin>
@@ -253,8 +244,6 @@
                 <version>3.1.0</version>
                 <scope>provided</scope>
             </dependency>
-            <!-- <dependency> <groupId>javax.mail</groupId> <artifactId>javax.mail-api</artifactId> 
-            <version>1.5.1</version> <scope>compile</scope> </dependency> -->
 
             <!-- Java Spec. -->
             <dependency>
