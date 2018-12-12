@@ -5,18 +5,18 @@
 	version="3.1">
 	<display-name>Public Transport Delays - WEB Scheduler</display-name>
 	<context-param>
-		<description>Scheduler start delay in seconds.</description>
+		<description>Scheduler start delay.</description>
 		<param-name>schedulerdelay</param-name>
-		<param-value>60</param-value>
+		<param-value>PT1M</param-value>
 	</context-param>
 	<context-param>
-		<description>Scheduler jobs interval in seconds.</description>
+		<description>Scheduler jobs interval.</description>
 		<param-name>schedulerjobinterval</param-name>
-		<param-value>60</param-value>
+		<param-value>PT1M</param-value>
 	</context-param>
 	<context-param>
-		<description>Scheduler jobs random interval addition in seconds.</description>
+		<description>Scheduler jobs random interval addition.</description>
 		<param-name>schedulerjobintervalrandom</param-name>
-		<param-value>60</param-value>
+		<param-value>PT1M</param-value>
 	</context-param>
 </web-app>

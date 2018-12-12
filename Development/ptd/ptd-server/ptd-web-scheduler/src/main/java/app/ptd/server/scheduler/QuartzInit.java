@@ -16,10 +16,10 @@ import org.quartz.impl.StdSchedulerFactory;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.Duration;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Random;
 
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
@@ -32,14 +32,16 @@ public class QuartzInit implements ServletContextListener {
   private static final String CONTEXT_PARAM_RND = "schedulerjobintervalrandom";
 
   private static final Logger l = LogManager.getLogger(QuartzInit.class);
+  
+   private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.RFC_1123_DATE_TIME;
 
   @Override
   public void contextInitialized(ServletContextEvent contextEvent) {
     l.debug("contextInitialized::");
     ServletContext context = contextEvent.getServletContext();
-    int delay = Integer.valueOf(context.getInitParameter(CONTEXT_PARAM_DELAY));
-    int interval = Integer.valueOf(context.getInitParameter(CONTEXT_PARAM_INTERVAL));
-    int randomInterval = Integer.valueOf(context.getInitParameter(CONTEXT_PARAM_RND));
+    Duration delay = Duration.parse(context.getInitParameter(CONTEXT_PARAM_DELAY));
+    Duration interval = Duration.parse(context.getInitParameter(CONTEXT_PARAM_INTERVAL));
+    Duration randomInterval = Duration.parse(context.getInitParameter(CONTEXT_PARAM_RND));
     initQuartz(delay, interval, randomInterval);
   }
 
@@ -49,26 +51,23 @@ public class QuartzInit implements ServletContextListener {
     shutdownQuartz();
   }
 
-  private void initQuartz(int delay, int randomInterval, int interval) {
+  private void initQuartz(Duration delay, Duration randomInterval, Duration interval) {
     try {
-      l.info("initQuartz:: Initing Quartz Scheduler with Delay {}, random interval {}, interval {}", delay,
-          randomInterval, interval);
+      l.info("initQuartz:: Initing Quartz Scheduler with delay {}, random interval {}, interval {}",
+              delay, randomInterval, interval);
       Random rnd = new Random();
-      DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSSZ");
-      Calendar startBaseline = GregorianCalendar.getInstance();
-      startBaseline.add(Calendar.SECOND, delay);
+      ZonedDateTime startBaseline = ZonedDateTime.now().plusSeconds(delay.toSeconds());
       Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
       scheduler.start();
 
       String jobId = "TBD";
-      Calendar startAt = (Calendar) startBaseline.clone();
-      startAt.add(Calendar.SECOND, rnd.nextInt(randomInterval));
-      l.info("initQuartz:: scheduling job [{}] to start since [{}] every [{}] seconds", jobId,
-          df.format(startAt.getTime()), interval);
+      ZonedDateTime startAt = startBaseline.plusSeconds(rnd.nextInt((int) randomInterval.toSeconds()));
+      l.info("initQuartz:: scheduling job [{}] to start since [{}] every [{}]", jobId,
+          DATE_TIME_FORMATTER.format(startAt), interval);
       JobDetail job = newJob(GetUrlResourceJob.class).withIdentity(jobId + "~job", "download").build();
       Trigger trigger = newTrigger().withIdentity(jobId + "~trigger", "download")
-          .startAt(startAt.getTime())
-          .withSchedule(simpleSchedule().withIntervalInSeconds(interval).repeatForever())
+          .startAt(Date.from(startAt.toInstant()))
+          .withSchedule(simpleSchedule().withIntervalInSeconds((int) interval.toSeconds()).repeatForever())
           .build();
 
       scheduler.scheduleJob(job, trigger);
