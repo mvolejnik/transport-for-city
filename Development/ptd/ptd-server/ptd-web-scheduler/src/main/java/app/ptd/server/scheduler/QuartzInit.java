@@ -53,8 +53,8 @@ public class QuartzInit implements ServletContextListener {
 
   private void initQuartz(Duration delay, Duration randomInterval, Duration interval) {
     try {
-      l.info("initQuartz:: Initing Quartz Scheduler with delay {}, random maximum interval {}, interval {}", delay,
-          randomInterval, interval);
+      l.info("initQuartz:: Initing Quartz Scheduler with delay {}, random interval {}, interval {}",
+              delay, randomInterval, interval);
       Random rnd = new Random();
       ZonedDateTime startBaseline = ZonedDateTime.now().plusSeconds(delay.toSeconds());
       Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
