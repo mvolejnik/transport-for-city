@@ -51,7 +51,7 @@ public class QuartzInit implements ServletContextListener {
 
   private void initQuartz(int delay, int randomInterval, int interval) {
     try {
-      l.info("initQuartz:: Initing Quartz Scheduler with Delay {}, random interval{}, interval {}", delay,
+      l.info("initQuartz:: Initing Quartz Scheduler with Delay {}, random interval {}, interval {}", delay,
           randomInterval, interval);
       Random rnd = new Random();
       DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSSZ");
