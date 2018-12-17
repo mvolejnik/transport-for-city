@@ -70,7 +70,7 @@ public class Transport {
 	@Path("/cities/{city}/lines")
 	@Produces("application/json;charset=utf-8")
 	public Response lines(@PathParam("city") String city) {
-		l.debug("lines():: City Code [%s], Operator [%s]");
+		l.debug("lines():: City Code [%s]", city);
 		try {
 			StreamingOutput stream = new StreamingOutput() {
 				@Override

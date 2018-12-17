@@ -39,6 +39,11 @@
 			<artifactId>lib-status-updates</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+                <dependency>
+			<groupId>app.ptd.server</groupId>
+			<artifactId>lib-remote-resources</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
