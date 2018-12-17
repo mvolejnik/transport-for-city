@@ -12,11 +12,21 @@
 	<context-param>
 		<description>Scheduler jobs interval.</description>
 		<param-name>schedulerjobinterval</param-name>
-		<param-value>PT1M</param-value>
+		<param-value>PT2M</param-value>
 	</context-param>
 	<context-param>
 		<description>Scheduler jobs random interval addition.</description>
 		<param-name>schedulerjobintervalrandom</param-name>
 		<param-value>PT1M</param-value>
+	</context-param>
+        <context-param>
+		<description>List of operators.</description>
+		<param-name>operators</param-name>
+		<param-value>
+                <![CDATA[
+                    cz.prg.dpp=http://www.dpp.cz/rss/mimoradne-udalosti;
+                    cz.prg.pid=https://pid.cz/feed/rss-mimoradnosti;
+                ]]>
+                </param-value>
 	</context-param>
 </web-app>
