@@ -17,9 +17,9 @@ node {
       		dir('Development/ptd') {
       			sh "mvn -N clean install"
       		}
-//      		dir('Development/ptd/ptd-server') {
-//      			sh "mvn -N clean install"
-//      		}
+      		dir('Development/ptd/ptd-server') {
+      			sh "mvn -N clean install"
+      		}
     	}    		
 	}
     
