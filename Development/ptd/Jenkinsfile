@@ -1,61 +1,67 @@
 #!/usr/bin/env groovy
 
 node {
-	echo "Public Transport Delays Build"
+    echo "Public Transport Delays Build"
 	
-	stage('Clone') {
-        git 'https://github.com/mvolejnik/public-transport-delays.git'
+    stages {
+        stage('Clone') {
+            git 'https://github.com/mvolejnik/public-transport-delays.git'
+        }
+
+        stage('Prepare Build') {
+                    withMaven(
+                    maven: 'M3'
+            ){
+                    dir('Development/ptd/ptd-build') {
+                            sh "mvn clean install"
+                    }
+                    dir('Development/ptd') {
+                            sh "mvn -N clean install"
+                    }
+                    dir('Development/ptd/ptd-server') {
+                            sh "mvn -N clean install"
+                    }
+            }    		
+            }
+
+            stage('Build') {
+                    withMaven(
+                    maven: 'M3'
+            ){
+                    dir('Development/ptd') {
+                            sh "mvn clean compile"
+                    }    
+            }    		
+            }
+
+            stage('Unit Test') {
+                    withMaven(
+                    maven: 'M3'
+            ){
+                    dir('Development/ptd') {
+                            sh "mvn surefire:test"
+                    }    
+            }    		
+            }
+
+            stage('Package') {
+                    withMaven(
+                    maven: 'M3'
+            ){
+                    dir('Development/ptd') {
+                            sh "mvn install"
+                    }    
+            }    		
+            }
+    
+        stage('Upload to repository') {
+
+	}
     }
-    
-    stage('Prepare Build') {
-		withMaven(
-        	maven: 'M3'
-    	){
-    		dir('Development/ptd/ptd-build') {
-      			sh "mvn clean install"
-      		}
-      		dir('Development/ptd') {
-      			sh "mvn -N clean install"
-      		}
-      		dir('Development/ptd/ptd-server') {
-      			sh "mvn -N clean install"
-      		}
-    	}    		
-	}
-    
-	stage('Build') {
-		withMaven(
-        	maven: 'M3'
-    	){
-      		dir('Development/ptd') {
-      			sh "mvn clean compile"
-      		}    
-    	}    		
-	}
-	
-	stage('Unit Test') {
-		withMaven(
-        	maven: 'M3'
-    	){
-      		dir('Development/ptd') {
-      			sh "mvn surefire:test"
-      		}    
-    	}    		
-	}
-	
-	stage('Package') {
-		withMaven(
-        	maven: 'M3'
-    	){
-      		dir('Development/ptd') {
-      			sh "mvn install"
-      		}    
-    	}    		
-	}
-	
-	stage('Upload to repository') {
-		
-	}
-	
+    post {
+                allways {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    //archiveArtifacts '**/target/*.war'
+                }
 }
 	
