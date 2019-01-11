@@ -3,14 +3,15 @@
 pipeline {
     agent any
 
-    echo "Public Transport Delays Build"
-	
     stages {
         stage('Clone') {
-            git 'https://github.com/mvolejnik/public-transport-delays.git'
+            steps{
+                git 'https://github.com/mvolejnik/public-transport-delays.git'
+            }
         }
 
         stage('Prepare Build') {
+                steps{
                     withMaven(
                     maven: 'M3'
             ){
@@ -23,20 +24,24 @@ pipeline {
                     dir('Development/ptd/ptd-server') {
                             sh "mvn -N clean install"
                     }
-            }    		
+            }
+            }
         }
 
         stage('Build') {
+            steps{
                     withMaven(
                     maven: 'M3'
             ){
                     dir('Development/ptd') {
                             sh "mvn clean compile"
                     }    
-            }    		
+            }    
+            }
             }
 
             stage('Unit Test') {
+                steps{
                     withMaven(
                     maven: 'M3'
             ){
@@ -45,8 +50,10 @@ pipeline {
                     }    
             }    		
             }
+            }
 
             stage('Package') {
+                steps{
                     withMaven(
                     maven: 'M3'
             ){
@@ -55,10 +62,9 @@ pipeline {
                     }    
             }    		
             }
+            }
     
-        stage('Upload to repository') {
-
-	}
+        //stage('Upload to repository') {}
     }
     post {
                 allways {
@@ -66,4 +72,4 @@ pipeline {
                     //archiveArtifacts '**/target/*.war'
                 }
 }
-}	
+}
