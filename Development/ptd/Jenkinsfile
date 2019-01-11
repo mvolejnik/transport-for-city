@@ -16,7 +16,7 @@ pipeline {
                     maven: 'M3'
             ){
                     dir('Development/ptd/ptd-build') {
-                            sh "mvn -clean install"
+                            sh "mvn clean install"
                     }
                     dir('Development/ptd') {
                             sh "mvn -N clean install"
