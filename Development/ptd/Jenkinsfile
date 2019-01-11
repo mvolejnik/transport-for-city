@@ -67,7 +67,7 @@ pipeline {
         //stage('Upload to repository') {}
     }
     post {
-                allways {
+                always {
                     junit '**/target/surefire-reports/TEST-*.xml'
                     //archiveArtifacts '**/target/*.war'
                 }
