@@ -22,10 +22,10 @@ import com.codahale.metrics.Timer;
 
 import app.ptd.server.management.Metrics;
 import app.ptd.server.model.Cities;
-import app.ptd.server.model.Countries;
 import app.ptd.server.model.Lines;
-import app.ptd.server.model.Operators;
 import app.ptd.server.ws.json.JsonIdentifiables;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.PUT;
 
 @Path("/transport")
 public class Transport {
@@ -70,7 +70,7 @@ public class Transport {
 	@Path("/cities/{city}/lines")
 	@Produces("application/json;charset=utf-8")
 	public Response lines(@PathParam("city") String city) {
-		l.debug("lines():: City Code [%s], Operator [%s]");
+		l.debug("lines():: City Code [%s]", city);
 		try {
 			StreamingOutput stream = new StreamingOutput() {
 				@Override
@@ -93,5 +93,14 @@ public class Transport {
 			return Response.serverError().status(Status.INTERNAL_SERVER_ERROR).build();
 		}
 	}
+
+        @PUT
+	@Path("/cities/{city}")
+        @Consumes("application/json;charset=utf-8")
+        public Response update(@PathParam("city") String city) {
+            l.debug("lines():: City Code [%s]", city);
+            //TODO
+            return Response.ok().status(Status.CREATED).build();
+        }
 	
 }

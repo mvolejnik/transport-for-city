@@ -2,6 +2,7 @@ package app.ptd.server.status;
 
 import java.net.URL;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -61,15 +62,7 @@ public class StatusUpdateImpl implements StatusUpdate {
 
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((description == null) ? 0 : description.hashCode());
-    result = prime * result + ((infoReference == null) ? 0 : infoReference.hashCode());
-    result = prime * result + ((lines == null) ? 0 : lines.hashCode());
-    result = prime * result + ((title == null) ? 0 : title.hashCode());
-    result = prime * result + ((type == null) ? 0 : type.hashCode());
-    result = prime * result + ((uuid == null) ? 0 : uuid.hashCode());
-    return result;
+    return Objects.hash(uuid, title, description, type, infoReference, lines);
   }
 
   @Override

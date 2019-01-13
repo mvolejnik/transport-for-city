@@ -1,43 +1,58 @@
 <?xml version="1.0"?>
 <project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>app.ptd.server</groupId>
-		<artifactId>ptd-server</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath />
-	</parent>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>app.ptd.server</groupId>
+        <artifactId>ptd-server</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath />
+    </parent>
 
-	<artifactId>ptd-ws-rest</artifactId>
-	<packaging>war</packaging>
+    <artifactId>ptd-ws-rest</artifactId>
+    <packaging>war</packaging>
 
-	<name>Public Transport Delays - REST Web Application</name>
-	<url>https://github.com/mvolejnik/public-transport-delays</url>
+    <name>Public Transport Delays - REST Web Application</name>
+    <url>https://github.com/mvolejnik/public-transport-delays</url>
 
-	<build>
-		<finalName>ptd-ws-rest</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<configuration>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
-					<webApp>
-						<contextPath>/ptd/rest</contextPath>
-					</webApp>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <finalName>ptd-ws-rest</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/ptd/rest</contextPath>
+                    </webApp>
+                    <jettyXml>src/main/etc/jetty.xml,src/main/etc/jetty-http.xml,src/main/etc/jetty-ssl-context.xml,src/main/etc/jetty-ssl.xml,src/main/etc/jetty-https.xml</jettyXml>
+                    <jvmArgs>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044</jvmArgs>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-server</artifactId>
+                        <version>9.4.14.v20181114</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-servlet</artifactId>
+                        <version>9.4.14.v20181114</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-webapp</artifactId>
+                        <version>9.4.14.v20181114</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 
 	<dependencies>
-		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>javax.ws.rs-api</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
@@ -65,10 +80,6 @@
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-jetty-http</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-moxy</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>

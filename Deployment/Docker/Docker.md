@@ -1,20 +1,20 @@
 ## Docker
 
-Docker container for TFC is based on jetty<openjdk<alpine
+Docker container for PTD is based on jetty<openjdk<alpine
 
 ### Prereq
 WAR files have to be in the root of context
 
 ### Build
 ```
-docker build -t tfc .
+docker build -t ptd .
 Sending build context to Docker daemon 16.95 MB
 Step 1/5 : FROM jetty:9.4.5-alpine
  ---> b0b260abf55d
-Step 2/5 : ADD tfc-ws-rest.war /var/lib/jetty/webapps/
+Step 2/5 : ADD ptd-ws-rest.war /var/lib/jetty/webapps/
  ---> 1a54a96ff70d
 Removing intermediate container dd912db8573e
-Step 3/5 : ADD tfc-web-scheduler.war /var/lib/jetty/webapps/
+Step 3/5 : ADD ptd-web-scheduler.war /var/lib/jetty/webapps/
  ---> f8eee421feba
 Removing intermediate container e1f589086257
 Step 4/5 : EXPOSE 8080
@@ -30,7 +30,7 @@ Successfully built d95bed780ab7
 
 ### Run
 ```
-docker run --rm -p 8080:8080 tfc .
+docker run --rm -p 8080:8080 -p 8443:8443 ptd .
 2017-06-17 15:26:20.152:INFO::main: Logging initialized @328ms to org.eclipse.jetty.util.log.StdErrLog
 2017-06-17 15:26:20.333:INFO:oejs.SetUIDListener:main: Setting umask=02
 2017-06-17 15:26:20.341:INFO:oejs.SetUIDListener:main: Opened ServerConnector@18be83e4{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
@@ -48,9 +48,9 @@ SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 2017-06-17 15:26:21,421 INFO  [main] a.t.s.s.QuartzInit - initQuartz:: scheduling job [TBD] to start since [17.06.2017 15:27:39.378+0000] every [60] seconds
-2017-06-17 15:26:21.444:INFO:oejsh.ContextHandler:main: Started o.e.j.w.WebAppContext@527740a2{/tfc-web-scheduler,file:///tmp/jetty/jetty-0.0.0.0-8080-tfc-web-scheduler.war-_tfc-web-scheduler-any-9201289482805195523.dir/webapp/,AVAILABLE}{/tfc-web-scheduler.war}
+2017-06-17 15:26:21.444:INFO:oejsh.ContextHandler:main: Started o.e.j.w.WebAppContext@527740a2{/ptd-web-scheduler,file:///tmp/jetty/jetty-0.0.0.0-8080-ptd-web-scheduler.war-_ptd-web-scheduler-any-9201289482805195523.dir/webapp/,AVAILABLE}{/ptd-web-scheduler.war}
 2017-06-17 15:26:22.212:INFO:oeja.AnnotationConfiguration:main: Scanning elapsed time=606ms
-2017-06-17 15:26:22.786:INFO:oejsh.ContextHandler:main: Started o.e.j.w.WebAppContext@14a50707{/tfc-ws-rest,file:///tmp/jetty/jetty-0.0.0.0-8080-tfc-ws-rest.war-_tfc-ws-rest-any-4164143925779233696.dir/webapp/,AVAILABLE}{/tfc-ws-rest.war}
+2017-06-17 15:26:22.786:INFO:oejsh.ContextHandler:main: Started o.e.j.w.WebAppContext@14a50707{/ptd-ws-rest,file:///tmp/jetty/jetty-0.0.0.0-8080-ptd-ws-rest.war-_ptd-ws-rest-any-4164143925779233696.dir/webapp/,AVAILABLE}{/ptd-ws-rest.war}
 2017-06-17 15:26:22.789:INFO:oejs.AbstractConnector:main: Started ServerConnector@18be83e4{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
 2017-06-17 15:26:22.789:INFO:oejs.Server:main: Started @2965ms
 ```
@@ -58,6 +58,6 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 ### Push to repository
 Tag image locally and push it to the repository
 ```
-docker tag tfc:latest user/tfc:0.0.1
-docker push user/tfc:0.0.1
+docker tag ptd:latest user/ptd:0.0.1
+docker push user/ptd:0.0.1
 ```

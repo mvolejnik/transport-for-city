@@ -39,6 +39,11 @@
 			<artifactId>lib-status-updates</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+                <dependency>
+			<groupId>app.ptd.server</groupId>
+			<artifactId>lib-remote-resources</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -63,5 +68,18 @@
 			<groupId>io.dropwizard.metrics</groupId>
 			<artifactId>metrics-core</artifactId>
 		</dependency>
+                <!-- jetty dependencies -->
+                <dependency>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jaxb-api</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jaxb</groupId>
+                    <artifactId>jaxb-runtime</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>activation</artifactId>
+                </dependency>
 	</dependencies>
 </project>
