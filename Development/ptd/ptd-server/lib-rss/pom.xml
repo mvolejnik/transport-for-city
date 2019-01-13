@@ -24,9 +24,6 @@
 					<packageName>app.ptd.libs.rss.jaxb.rss20</packageName>
 					<schemaDirectory>${basedir}/src/main/resources</schemaDirectory>
 					<schemaFiles>rss-2_0.xsd</schemaFiles>
-					<!-- <sources>
-						<source>src/main/resources/rss-2_0.xsd</source>
-						</sources> -->
 				</configuration>
 			</plugin>
 		</plugins>
