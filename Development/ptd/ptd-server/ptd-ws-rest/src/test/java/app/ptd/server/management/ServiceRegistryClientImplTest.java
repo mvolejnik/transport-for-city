@@ -24,9 +24,8 @@ import java.util.concurrent.TimeoutException;
 import javax.json.Json;
 import javax.json.JsonException;
 import javax.json.stream.JsonParser;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ServiceRegistryClientImplTest {
 
@@ -58,7 +57,7 @@ public class ServiceRegistryClientImplTest {
             instance.register();
             String s = f.get(2, TimeUnit.SECONDS);
             String expectedJson = "{\"register\":{\"srv\":\"" + URN + "\",\"url\":\"" + MSG_URL + "\"}}";
-            assertEquals("Unexpected multicast message", expectedJson, s);
+            assertEquals(expectedJson, s, "Unexpected multicast message");
             socket.leaveGroup(InetAddress.getByName(MULTICAST_ADDRESS));
         } 
     }
@@ -76,7 +75,7 @@ public class ServiceRegistryClientImplTest {
             instance.unregister();
             String s = f.get(2, TimeUnit.SECONDS);
             String expectedJson = "{\"unregister\":{\"srv\":\"" + URN + "\",\"url\":\"" + MSG_URL + "\"}}";
-            assertEquals("Unexpected multicast message", expectedJson, s);
+            assertEquals(expectedJson, s, "Unexpected multicast message");
             socket.leaveGroup(InetAddress.getByName(MULTICAST_ADDRESS));
         } 
     }
@@ -90,7 +89,7 @@ public class ServiceRegistryClientImplTest {
         ServiceRegistryClientImpl instance = new ServiceRegistryClientImpl(new InetSocketAddress("localhost", 1234), URN, MSG_URL);
         String expectedJson = "{\"test\":{\"srv\":\"" + URN + "\",\"url\":\"" + MSG_URL + "\"}}";
         String result = instance.message(ACTION);
-        assertEquals("Produced JSON is incorrect.", expectedJson, result);
+        assertEquals(expectedJson, result, "Produced JSON is incorrect.");
     }
 
     @Test
