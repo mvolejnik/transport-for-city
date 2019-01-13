@@ -149,6 +149,13 @@
 
             </plugins>
         </pluginManagement>
+        <extensions>
+            <extension>
+                <groupId>io.cloudsmith.maven.wagon</groupId>
+                <artifactId>cloudsmith-maven-wagon</artifactId>
+                <version>0.4.1-20181125.203134-3</version>
+            </extension>
+        </extensions>
     </build>
 
 
@@ -210,6 +217,19 @@
     <!-- TODO update versions -->
     <dependencyManagement>
         <dependencies>
+            
+            <!-- JSON -->
+            <dependency>
+                <groupId>javax.json</groupId>
+                <artifactId>javax.json-api</artifactId>
+                <version>1.1.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.json</artifactId>
+                <version>1.1.4</version>
+            </dependency>
+            
             <!-- XML Spec. -->
             <dependency>
                 <groupId>javax.ws.rs</groupId>
@@ -399,4 +419,34 @@
 
         </dependencies>
     </dependencyManagement>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>cloudsmith-api</id>
+            <name>Cloudsmith API Releases</name>
+            <url>https://dl.cloudsmith.io/public/cloudsmith/api/maven</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <repositories>
+        <repository>
+            <id>cloudsmith-api</id>
+            <name>Cloudsmith API Releases</name>
+            <url>https://dl.cloudsmith.io/public/cloudsmith/api/maven</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>cloudsmith.io-snapshots</id>
+            <url>cloudsmith+https://api.cloudsmith.io/packages/michal-volejnik/public-transport-delays-snapshots/</url>
+            <uniqueVersion>true</uniqueVersion>
+            <layout>default</layout>
+        </snapshotRepository>
+        <repository>
+            <id>cloudsmith.io</id>
+            <url>cloudsmith+https://api.cloudsmith.io/michal.volejnik/public-transport-delays</url>
+            <uniqueVersion>true</uniqueVersion>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
 </project>
