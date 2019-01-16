@@ -1,0 +1,5 @@
+
+server.host: "kibana"
+server.port: 5601
+server.name: "kibana"
+
