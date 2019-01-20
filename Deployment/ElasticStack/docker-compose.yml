@@ -1,0 +1,36 @@
+version: '3'
+services: 
+  elasticsearch:
+    build: ./elasticsearch
+    ports: 
+    - "9200:9200"
+    - "9300:9300"
+    volumes:
+    - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+    - devops-net
+    environment:
+    - discovery.type=single-node
+  kibana:
+    build: ./kibana
+    ports:
+    - "5601:5601"
+    networks:
+    - devops-net
+    environment:
+    - ELASTICSEARCH_URL=http://elasticsearch:9200
+  logstash:
+    build: ./logstash
+    ports:
+    - "9600:9600"
+    volumes:
+    - logstash_conf:/usr/share/logstash/pipeline
+    networks:
+    - devops-net
+volumes:
+  elasticsearch_data: {}
+  logstash_conf: {}
+networks:
+  devops-net:
+    driver: bridge
+
