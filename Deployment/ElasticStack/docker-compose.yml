@@ -1,0 +1,60 @@
+version: '3.7'
+services: 
+  elasticsearch:
+    build: ./elasticsearch
+    ports: 
+    - "9200:9200"
+    - "9300:9300"
+    volumes:
+    - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+    - devops-net
+    environment:
+    - discovery.type=single-node
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+  kibana:
+    build: ./kibana
+    ports:
+    - "5601:5601"
+    networks:
+    - devops-net
+    environment:
+    - ELASTICSEARCH_URL=http://elasticsearch:9200
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 128M
+  logstash:
+    build: ./logstash
+    ports:
+    - "9600:9600"
+    volumes:
+    - logstash_conf:/usr/share/logstash/pipeline
+    networks:
+    - devops-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 64M
+  metricbeat:
+    build: ./metricbeat
+    networks:
+    - devops-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 64M
+volumes:
+  elasticsearch_data: {}
+  logstash_conf: {}
+networks:
+  devops-net:
+    driver: bridge
+
