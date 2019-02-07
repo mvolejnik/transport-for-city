@@ -22,12 +22,14 @@ public class GetUrlResourceJob implements Job {
   public void execute(JobExecutionContext context) throws JobExecutionException {
     l.info("execute:: job started [{}]", context.getJobDetail().getKey());
     String urlParam = context.getJobDetail().getJobDataMap().getString(DATA_URL);
+    l.debug("execute():: resource url '{}'", urlParam);
     try {
       URL url = new URL(urlParam);
       l.debug("execute():: getting resource '{}'", url.toExternalForm());
       Optional<Resource> resource = new HttpResource().content(url);
       l.debug("execute():: resource '{}' has content '{}'", url.toExternalForm(), resource.isPresent());
     } catch (MalformedURLException | RemoteResourceException e) {
+      l.error("Incorrect URL to download resource '{}'", urlParam);
       throw new JobExecutionException(String.format("Unable to download resource '%s'", urlParam), e);
     }
     l.info("execute:: job finished");

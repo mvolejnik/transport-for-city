@@ -92,7 +92,7 @@ public class HttpResourcesTest {
   public void testNotModifyETag() throws Exception {
     initAll();
     try (HttpResource httpResource = new HttpResource();){
-        assertFalse(httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json"), NOT_MODIFIED, null).isPresent(), "Unmodified resource shouldn't be returned.");
+        assertFalse(httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json"), NOT_MODIFIED, null).get().modified(), "Unmodified resource shouldn't be returned.");
     } finally {
       tearDownAll();
     }
@@ -103,7 +103,7 @@ public class HttpResourcesTest {
     initAll();
     try (HttpResource httpResource = new HttpResource();){
       DateTimeFormatter.RFC_1123_DATE_TIME.format(TIME_LAST_DOWNLOADED);
-        assertFalse(httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json"), null, TIME_LAST_DOWNLOADED).isPresent(), "Unmodified resource shouldn't be returned.");
+        assertFalse(httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json"), null, TIME_LAST_DOWNLOADED).get().modified(), "Unmodified resource shouldn't be returned.");
     } finally {
       tearDownAll();
     }

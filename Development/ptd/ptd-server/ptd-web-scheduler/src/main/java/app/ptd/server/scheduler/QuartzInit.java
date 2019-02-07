@@ -92,7 +92,10 @@ public class QuartzInit implements ServletContextListener {
       ZonedDateTime startAt = startBaseline.plusSeconds(rnd.nextInt((int) randomInterval.toSeconds()));
       l.info("initQuartz:: scheduling job [{}] to start since [{}] every [{}]", jobId,
           DATE_TIME_FORMATTER.format(startAt), interval);
-      JobDetail job = newJob(GetUrlResourceJob.class).withIdentity(jobId + "~job", "download").build();
+      JobDetail job = newJob(GetUrlResourceJob.class)
+              .withIdentity(jobId + "~job", "download")
+              .usingJobData(GetUrlResourceJob.DATA_URL, url.toExternalForm())
+              .build();
       Trigger trigger = newTrigger().withIdentity(jobId + "~trigger", "download")
           .startAt(Date.from(startAt.toInstant()))
           .withSchedule(simpleSchedule().withIntervalInSeconds((int) interval.toSeconds()).repeatForever())

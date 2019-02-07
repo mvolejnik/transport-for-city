@@ -18,13 +18,16 @@ import org.apache.logging.log4j.Logger;
 import app.ptd.server.remoteresources.RemoteResourceException;
 import app.ptd.server.remoteresources.Resource;
 import app.ptd.server.remoteresources.ResourceImpl;
+import org.apache.http.Header;
 
 public class HttpResource implements AutoCloseable {
 
   private static final Logger l = LogManager.getLogger(HttpResource.class);
 
+  private static final String ETAG_HEADER = "ETag";
   private static final String ETAG_IF_NONE_MATCH = "If-None-Match";
   private static final String ETAG_IF_MODIFIED_SINCE = "If-Modified-Since";
+  
   private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.RFC_1123_DATE_TIME;
   CloseableHttpClient httpclient;
   
@@ -59,9 +62,10 @@ public class HttpResource implements AutoCloseable {
           l.error("content():: Server response does not contain any data.");
           throw new RemoteResourceException("Missing server data.");
         }
-        resource = Optional.ofNullable(new ResourceImpl(entity.getContent()));
+        Header responseEtag = response.getFirstHeader(ETAG_HEADER);
+        resource = Optional.of(new ResourceImpl(entity.getContent()).fingerprint(responseEtag == null ? null : responseEtag.getValue()));
       } else if (statusCode.isNotUpdated()) {
-        resource = Optional.empty();
+        resource = Optional.of(new ResourceImpl());
       } else if (statusCode.isClientError()) {
         l.error("content():: Unable to get resource '{}' due to client error: '{}' ({}).", resourceUrl, statusCode.statusCode,
             response.getStatusLine().getReasonPhrase());
@@ -71,7 +75,7 @@ public class HttpResource implements AutoCloseable {
         l.warn("content():: Resource '{}' unexpected response '{}' ({}).", resourceUrl, statusCode.statusCode,
             response.getStatusLine().getReasonPhrase());
         HttpEntity entity = response.getEntity();
-        resource = entity == null ? Optional.empty() : Optional.ofNullable(new ResourceImpl(entity.getContent()));
+        resource = entity == null ? Optional.empty() : Optional.of(new ResourceImpl(entity.getContent()));
       }
 
       return resource;
