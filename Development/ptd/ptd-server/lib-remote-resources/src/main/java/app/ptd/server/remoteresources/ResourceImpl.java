@@ -23,6 +23,8 @@ public class ResourceImpl implements Resource, Closeable {
     
     private byte[] digest;
     
+    private boolean read;
+    
     private static final Logger l = LogManager.getLogger(ResourceImpl.class);
     
 
@@ -41,8 +43,13 @@ public class ResourceImpl implements Resource, Closeable {
     }
 
     @Override
-    public Optional<InputStream> content() {
-        return content;
+    public synchronized Optional<InputStream> content() {
+        if (read){
+            throw new IllegalStateException("Resource already read.");
+        } else {
+            read = true;
+            return content;
+        }
     }
 
     public Optional<String> fingerprint() {

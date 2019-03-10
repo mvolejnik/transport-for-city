@@ -27,7 +27,7 @@ public class HttpClientNotifier implements StatusUpdateNotifier {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8080/ptd/updates")) //TODO
                 .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(notification.content()))
+                .POST(HttpRequest.BodyPublishers.ofInputStream(() -> notification.content()))
                 .build();
         client.sendAsync(request,HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::statusCode)
