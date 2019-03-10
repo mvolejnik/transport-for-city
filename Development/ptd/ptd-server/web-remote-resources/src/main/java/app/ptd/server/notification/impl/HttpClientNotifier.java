@@ -4,14 +4,11 @@
 package app.ptd.server.notification.impl;
 
 import app.ptd.server.notification.StatusUpdateNotification;
-import app.ptd.server.notification.StatusUpdateNotification;
-import app.ptd.server.notification.StatusUpdateNotifier;
 import app.ptd.server.notification.StatusUpdateNotifier;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.concurrent.CompletableFuture;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

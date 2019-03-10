@@ -21,6 +21,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import app.ptd.server.remoteresources.RemoteResourceException;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,12 +29,15 @@ public class HttpResourcesTest {
 
   private static Server server;
 
-  private static final int PORT = 8088;
-  
-  private static final String NOT_MODIFIED = "NOT_MODIFY" ;
+  private static final String MOCK_NOT_MODIFIED = "NOT_MODIFY" ;
   private static final String NOT_EXISTING_RESOURCE = "/not-existing-resource" ;
   private static final ZonedDateTime TIME_LAST_DOWNLOADED = ZonedDateTime.parse("2018-01-01T12:00:00.00Z");
   private static final ZonedDateTime TIME_RESOURCE_NOT_UPDATED = ZonedDateTime.parse("2018-01-01T10:00:00.00Z");
+  private static final String SCHEME = "http";
+  private static final String HOSTNAME = "localhost";
+  private static final int PORT = 8088;
+  private static final String URL_BASE = SCHEME + "://" + HOSTNAME + ":" + PORT ;
+  private static final String URL_PATH_SIMPLE = "/test/simple.json";
 
   @BeforeAll
   static void initAll() throws Exception {
@@ -48,12 +52,14 @@ public class HttpResourcesTest {
         @Override
         public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-          if (NOT_MODIFIED.equals(request.getHeader("If-None-Match"))) {
+          if (MOCK_NOT_MODIFIED.equals(request.getHeader("If-None-Match"))) {
             response.setStatus(304);
             baseRequest.setHandled(true);           
           }
           String ifModifiedSince = request.getHeader("If-Modified-Since");
-          if (ifModifiedSince != null && TIME_RESOURCE_NOT_UPDATED.isBefore(ZonedDateTime.from(DateTimeFormatter.RFC_1123_DATE_TIME.parse(ifModifiedSince))) && request.getHeader("If-None-Match") == null) {
+          if (ifModifiedSince != null
+                  && TIME_RESOURCE_NOT_UPDATED.isBefore(ZonedDateTime.from(DateTimeFormatter.RFC_1123_DATE_TIME.parse(ifModifiedSince)))
+                  && request.getHeader("If-None-Match") == null) {
             response.setStatus(304);
             baseRequest.setHandled(true);
           }
@@ -77,9 +83,9 @@ public class HttpResourcesTest {
   public void testRemoteResource() throws Exception {
     initAll();
     try (HttpResource httpResource = new HttpResource();
-        InputStream is = httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json"))
+        InputStream is = httpResource.content(new URL(URL_BASE + URL_PATH_SIMPLE))
             .get()
-            .content()) {
+            .content().get()) {
       byte[] b = new byte[17];
       is.read(b);
       assertEquals("{\"test\": \"test\"}", new String(b).substring(0, 16), "Unexpected Remote Resource Content.");
@@ -92,7 +98,7 @@ public class HttpResourcesTest {
   public void testNotModifyETag() throws Exception {
     initAll();
     try (HttpResource httpResource = new HttpResource();){
-        assertFalse(httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json"), NOT_MODIFIED, null).get().modified(), "Unmodified resource shouldn't be returned.");
+        assertTrue(httpResource.content(new URL(URL_BASE + URL_PATH_SIMPLE), Optional.of(MOCK_NOT_MODIFIED), Optional.empty()).isEmpty(), "Unmodified resource shouldn't be returned.");
     } finally {
       tearDownAll();
     }
@@ -103,7 +109,7 @@ public class HttpResourcesTest {
     initAll();
     try (HttpResource httpResource = new HttpResource();){
       DateTimeFormatter.RFC_1123_DATE_TIME.format(TIME_LAST_DOWNLOADED);
-        assertFalse(httpResource.content(new URL("http://localhost:" + PORT + "/test/simple.json"), null, TIME_LAST_DOWNLOADED).get().modified(), "Unmodified resource shouldn't be returned.");
+        assertTrue(httpResource.content(new URL(URL_BASE + URL_PATH_SIMPLE), Optional.empty(), Optional.of(TIME_LAST_DOWNLOADED)).isEmpty(), "Unmodified resource shouldn't be returned.");
     } finally {
       tearDownAll();
     }
@@ -113,7 +119,7 @@ public class HttpResourcesTest {
   public void testNotExistingResource() throws Exception {
     initAll();
     try (HttpResource httpResource = new HttpResource();){
-        assertThrows(RemoteResourceException.class, () -> httpResource.content(new URL("http://localhost:" + PORT + NOT_EXISTING_RESOURCE)));
+        assertThrows(RemoteResourceException.class, () -> httpResource.content(new URL(URL_BASE + NOT_EXISTING_RESOURCE)));
     } finally {
       tearDownAll();
     }

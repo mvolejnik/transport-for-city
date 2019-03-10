@@ -11,10 +11,10 @@
 		<relativePath/>
 	</parent>
 
-	<artifactId>ptd-web-scheduler</artifactId>
+	<artifactId>web-remote-resources</artifactId>
 
 	<packaging>war</packaging>
-	<name>Public Transport Delays - Scheduler</name>
+	<name>Public Transport Delays - Remote resources</name>
 	<url>https://github.com/mvolejnik/public-transport-delays</url>
         
         <properties>
@@ -22,7 +22,7 @@
         </properties>
 
 	<build>
-		<finalName>ptd-web-scheduler</finalName>
+		<finalName>web-remote-resources</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
@@ -85,5 +85,23 @@
                     <groupId>javax.activation</groupId>
                     <artifactId>activation</artifactId>
                 </dependency>
+	 <dependency>
+	  <groupId>org.junit.jupiter</groupId>
+	  <artifactId>junit-jupiter-api</artifactId>
+	  <version>5.3.1</version>
+	  <scope>test</scope>
+	 </dependency>
+	 <dependency>
+	  <groupId>org.junit.jupiter</groupId>
+	  <artifactId>junit-jupiter-params</artifactId>
+	  <version>5.3.1</version>
+	  <scope>test</scope>
+	 </dependency>
+	 <dependency>
+	  <groupId>org.junit.jupiter</groupId>
+	  <artifactId>junit-jupiter-engine</artifactId>
+	  <version>5.3.1</version>
+	  <scope>test</scope>
+	 </dependency>
 	</dependencies>
 </project>

@@ -2,8 +2,8 @@
 <Configuration>
 	<Appenders>
 		<File
-			name="ptd-web-scheduler"
-			fileName="ptd-web-scheduler.log"
+			name="ptd-ws-rest"
+			fileName="ptd-ws-rest.log"
 			append="false">
 			<PatternLayout pattern="%t %-5p %c{1.} - %m%n" />
 		</File>
@@ -17,7 +17,7 @@
 		<Logger
 			name="app.ptd"
 			level="debug">
-			<AppenderRef ref="ptd-web-scheduler" />
+			<AppenderRef ref="ptd-ws-rest" />
 		</Logger>
 		<Root level="debug">
 			<AppenderRef ref="STDOUT" />

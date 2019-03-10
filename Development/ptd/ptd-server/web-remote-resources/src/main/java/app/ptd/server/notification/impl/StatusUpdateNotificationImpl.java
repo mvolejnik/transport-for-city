@@ -2,6 +2,7 @@
  */
  package app.ptd.server.notification.impl;
  import app.ptd.server.notification.StatusUpdateNotification;
+ 
  /**
  *
  * @author mvolejnik
