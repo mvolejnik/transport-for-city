@@ -1,4 +1,4 @@
-package app.ptd.server.management;
+package app.ptd.server.registry;
 
 import java.net.URI;
 

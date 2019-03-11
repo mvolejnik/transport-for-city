@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.ptd.server.management;
+package app.ptd.server.registry;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -80,32 +80,6 @@ public class ServiceRegistryClientImplTest {
         } 
     }
 
-    /**
-     * Test of message method, of class ServiceRegistryClientImpl.
-     */
-    @Test
-    public void testMessage() throws URISyntaxException, MalformedURLException {
-        System.out.println("message");
-        ServiceRegistryClientImpl instance = new ServiceRegistryClientImpl(new InetSocketAddress("localhost", 1234), URN, MSG_URL);
-        String expectedJson = "{\"test\":{\"srv\":\"" + URN + "\",\"url\":\"" + MSG_URL + "\"}}";
-        String result = instance.message(ACTION);
-        assertEquals(expectedJson, result, "Produced JSON is incorrect.");
-    }
-
-    @Test
-    public void testMessageValidity() throws URISyntaxException, MalformedURLException {
-        System.out.println("message");
-        ServiceRegistryClientImpl instance = new ServiceRegistryClientImpl(new InetSocketAddress("localhost", 1234), URN, MSG_URL);
-        try {
-            JsonParser p = Json.createParser(new ByteArrayInputStream(instance.message(ACTION).getBytes()));
-            while (p.hasNext()) {
-                p.next();
-            }
-        } catch (JsonException e) {
-            fail("Produced JSON not proper json object.");
-        }
-    }
-    
     private String receiveMulticastMessage(MulticastSocket socket) throws IOException{
             byte[] buf = new byte[1000];
             DatagramPacket recv = new DatagramPacket(buf, buf.length);

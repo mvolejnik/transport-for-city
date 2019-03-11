@@ -30,8 +30,9 @@ public class ResourceImplTest {
     @Test
     public void testContent() throws RemoteResourceException, IOException, NoSuchAlgorithmException {
         Resource r = new ResourceImpl(IOUtils.toInputStream(CONTENT, Charset.forName("UTF-8")));
-        assertNotNull(r.content(), "Content should not be null");
-        assertEquals(CONTENT, IOUtils.toString(r.content().get(), Charset.forName("UTF-8")));
+        var content = r.content();
+        assertNotNull(content, "Content should not be null");
+        assertEquals(CONTENT, IOUtils.toString(content.get(), Charset.forName("UTF-8")));
     }
     
      @Test

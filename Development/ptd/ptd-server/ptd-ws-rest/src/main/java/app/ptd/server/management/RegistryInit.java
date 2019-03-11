@@ -5,6 +5,8 @@
  */
 package app.ptd.server.management;
 
+import app.ptd.server.registry.ServiceRegistryClient;
+import app.ptd.server.registry.ServiceRegistryClientImpl;
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.URI;

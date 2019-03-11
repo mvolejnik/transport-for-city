@@ -1,4 +1,4 @@
-package app.ptd.server.management;
+package app.ptd.server.registry;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,8 +19,6 @@ public class ServiceRegistryClientImpl implements ServiceRegistryClient {
     private InetSocketAddress inetSocketAddress;
     private URI uri;
     private URL url;
-    private static final String JSON_PROPERTY_SERVICE = "srv";
-    private static final String JSON_PROPERTY_URL = "url";
     private static final Logger l = LogManager.getLogger(ServiceRegistryClientImpl.class);
 
     public ServiceRegistryClientImpl(InetSocketAddress inetSocketAddress, URI serviceUri, URL url) {
@@ -35,12 +33,12 @@ public class ServiceRegistryClientImpl implements ServiceRegistryClient {
     
     @Override
     public void register() {
-        sendMulticastMessage(message("register").getBytes());
+        sendMulticastMessage(new ServiceRegistryMessage(uri, url).toJson("register").getBytes());
     }
 
     @Override
     public void unregister() {
-        sendMulticastMessage(message("unregister").getBytes());
+        sendMulticastMessage(new ServiceRegistryMessage(uri, url).toJson("unregister").getBytes());
     }
     
     private void sendMulticastMessage(byte[] message){
@@ -53,17 +51,5 @@ public class ServiceRegistryClientImpl implements ServiceRegistryClient {
         }
     }
     
-    String message(String action){
-        l.debug("registryMessage()::");
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        Json.createGenerator(os).writeStartObject()
-                .writeStartObject(action)
-                .write(JSON_PROPERTY_SERVICE, uri.toString())
-                .write(JSON_PROPERTY_URL, url.toString())
-                .writeEnd()
-                .writeEnd()
-                .close();
-        return os.toString();
-    }
     
 }
