@@ -42,7 +42,7 @@ public class DppFactory {
   private static final Logger l = LogManager.getLogger(DppFactory.class);
 
   public List<StatusUpdate> statusUpdates(InputStream rssInputStream) throws StatusUpdateException {
-    l.info("statusUpdates()::");
+    l.info("statusUpdates::");
     Rss rss;
     List<RssItem> items;
     List<StatusUpdate> statusUpdates = new ArrayList<>();
@@ -61,7 +61,7 @@ public class DppFactory {
   }
 
   private StatusUpdate parseStatusUpdate(RssItem rss) throws StatusUpdateException {
-    l.info("parseStatusUpdate()::");
+    l.info("parseStatusUpdate::");
     String title = null;
     String description = null;
     String type = null;
@@ -74,16 +74,16 @@ public class DppFactory {
       if (attr instanceof JAXBElement<?>) {// TODO generics
         JAXBElement e = (JAXBElement) attr;
         Class clazz = ((JAXBElement) attr).getDeclaredType();
-        l.trace("parseStatusUpdate():: Attribute of type [{}].", clazz);
+        l.trace("parseStatusUpdate:: Attribute of type [{}].", clazz);
         String name = ((JAXBElement) attr).getName().getNamespaceURI() + ":"
             + ((JAXBElement) attr).getName().getLocalPart();
         Object value = ((JAXBElement) attr).getValue();
         if (value != null) {
           switch (name) {
           case ":guid":
-            l.debug("parseStatusUpdate():: Processing GUID");
+            l.debug("parseStatusUpdate:: Processing GUID");
             Guid guid = (Guid) value;
-            l.debug("parseStatusUpdate():: GUID [{}]", guid.getValue());
+            l.debug("parseStatusUpdate:: GUID [{}]", guid.getValue());
             if (!guid.getValue().isEmpty() && guid.getValue().length() > 0) {
               uuid = UuidGenerator.generate(guid.getValue());
             } else {
@@ -91,14 +91,14 @@ public class DppFactory {
             }
             break;
           case ":title":
-            l.debug("parseStatusUpdate():: Processing title");
+            l.debug("parseStatusUpdate:: Processing title");
             title = value.toString().trim();
             if (StringUtils.isEmpty(title)) {
               l.info("parseStatusUpdate:: Item's title is empty.");
             }
             break;
           case ":description":
-            l.debug("parseStatusUpdate():: Processing description");
+            l.debug("parseStatusUpdate:: Processing description");
             description = StringUtils.trim(value.toString());
             if (StringUtils.isEmpty(description)) {
               l.debug("parseStatusUpdate:: Item's description is empty.");
@@ -115,7 +115,7 @@ public class DppFactory {
             }
             break;
           default:
-            l.debug("parseStatusUpdate():: unable to parse [{}]", name);
+            l.debug("parseStatusUpdate:: unable to parse [{}]", name);
           }
         }
       } else if (attr instanceof Element) {
@@ -123,7 +123,7 @@ public class DppFactory {
         String name = element.getLocalName();
         switch (name) {
         case "content_encoded":
-          l.debug("parseStatusUpdate():: Processing content_encoded");
+          l.debug("parseStatusUpdate:: Processing content_encoded");
           CharacterData text = (CharacterData) element.getFirstChild();
           try {
             Content c = parseContent(text.getData());
@@ -131,11 +131,11 @@ public class DppFactory {
             type = c.getEmergencyType();
           } catch (DOMException | XMLStreamException e) {
             l.warn("Unable to parse RSS Item Content Data", e);
-            l.debug("parseStatusUpdate():: [{}]", text);
+            l.debug("parseStatusUpdate:: [{}]", text);
           }
           break;
         default:
-          l.debug("parseStatusUpdate():: unable to parse [{}]", name);
+          l.debug("parseStatusUpdate:: unable to parse [{}]", name);
         }
       }
     }
@@ -150,7 +150,7 @@ public class DppFactory {
   }
 
   private Content parseContent(String xmlContent) throws XMLStreamException {
-    l.debug("parseContent():: Parsing content_encoded element.");
+    l.debug("parseContent:: Parsing content_encoded element.");
     Content content = new Content();
     StringBuilder xml = new StringBuilder();
     xml.append("<content>").append(xmlContent).append("</content>");
@@ -160,7 +160,7 @@ public class DppFactory {
       r.next();
       if (r.isStartElement()) {
         String rootElementName = r.getName().getLocalPart();
-        l.trace("parseContent():: Root Start Element [{}]", rootElementName);
+        l.trace("parseContent:: Root Start Element [{}]", rootElementName);
         if ("content".equals(rootElementName)) {
           int depth = 0;
           while (r.hasNext() && depth >= 0) {
@@ -171,31 +171,31 @@ public class DppFactory {
               switch (name) {
               case "emergency_types":
                 // Provoz omezen, Zpoždění spojů, Provoz zastaven
-                l.trace("parseContent():: Parsing emergency types.");
+                l.trace("parseContent:: Parsing emergency types.");
                 content.setEmergencyType(r.getElementText());
                 break;
               case "time_start":
-                l.trace("parseContent():: Parsing start time.");
+                l.trace("parseContent:: Parsing start time.");
                 content.setStart(parseTimeStart());
                 break;
               case "time_stop":
-                l.trace("parseContent():: Parsing stop time.");
+                l.trace("parseContent:: Parsing stop time.");
                 content.setStop(parseTimeStop());
                 break;
               case "time_final_stop":
-                l.trace("parseContent():: Parsing final stop time.");
+                l.trace("parseContent:: Parsing final stop time.");
                 content.setFinalStop(parseTimeFinalStop());
                 break;
               case "integrated_rescue_system":
-                l.trace("parseContent():: Parsing integrated rescue system involved.");
+                l.trace("parseContent:: Parsing integrated rescue system involved.");
                 // do nothing
                 break;
               case "aff_line_types":
-                l.trace("parseContent():: Parsing line types.");
+                l.trace("parseContent:: Parsing line types.");
                 // do nothing
                 break;
               case "aff_lines":
-                l.trace("parseContent():: Parsing affected lines.");
+                l.trace("parseContent:: Parsing affected lines.");
                 content.setLines(parseAffectedLines(r.getElementText()));
                 break;
               default:

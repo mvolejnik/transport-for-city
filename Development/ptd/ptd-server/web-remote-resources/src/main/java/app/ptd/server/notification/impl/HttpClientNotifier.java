@@ -31,6 +31,6 @@ public class HttpClientNotifier implements StatusUpdateNotifier {
                 .build();
         client.sendAsync(request,HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::statusCode)
-                .thenAccept(s -> {l.info("send():: Status update notification status code [{}]", s);});
+                .thenAccept(s -> {l.info("send:: Status update notification status code [{}]", s);});
     }
 }

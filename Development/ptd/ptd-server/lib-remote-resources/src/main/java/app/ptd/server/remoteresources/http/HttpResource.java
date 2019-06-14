@@ -26,10 +26,9 @@ public class HttpResource implements AutoCloseable {
   private static final String ETAG_HEADER = "ETag";
   private static final String ETAG_IF_NONE_MATCH = "If-None-Match";
   private static final String ETAG_IF_MODIFIED_SINCE = "If-Modified-Since";
-  
+
   private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.RFC_1123_DATE_TIME;
   CloseableHttpClient httpclient;
-  
 
   public HttpResource() {
     httpclient = HttpClients.createDefault();
@@ -37,7 +36,7 @@ public class HttpResource implements AutoCloseable {
 
   /**
    * Fetches remote resource.
-   * 
+   *
    * @param resourceUrl resource UrL
    * @return resource content or empty Optional instance
    * @throws RemoteResourceException if resource cannot be downloaded
@@ -48,18 +47,18 @@ public class HttpResource implements AutoCloseable {
 
   /**
    * Fetches remote resource.
-   * 
+   *
    * @param resourceUrl resource URL
    * @param etag ETag of the already downloaded resource
    * @param ifModifiedSince timestamp of already downloaded resource
-   * @return resource or empty Optional instance if resource was not modified
-   *         since last fetch or has no content
-   * @throws RemoteResourceException if resource cannot be downloaded 
+   * @return resource or empty Optional instance if resource was not modified since last fetch or has no content
+   * @throws RemoteResourceException if resource cannot be downloaded
    */
   public Optional<Resource> content(URL resourceUrl, Optional<String> etag, Optional<ZonedDateTime> ifModifiedSince) throws RemoteResourceException {
-      Objects.nonNull(resourceUrl);
-      Objects.nonNull(etag);
-      Objects.nonNull(ifModifiedSince);
+    l.debug("content::");
+    Objects.nonNull(resourceUrl);
+    Objects.nonNull(etag);
+    Objects.nonNull(ifModifiedSince);
     if (ifModifiedSince.isPresent() && ZonedDateTime.now().isBefore(ifModifiedSince.get())) {
       throw new IllegalArgumentException("ifModifiedSince cannot be from future.");
     }
@@ -70,26 +69,29 @@ public class HttpResource implements AutoCloseable {
       if (ifModifiedSince.isPresent()) {
         httpGet.addHeader(ETAG_IF_MODIFIED_SINCE, DATE_TIME_FORMATTER.format(ifModifiedSince.get()));
       }
+      l.debug("content:: downloading url '{}'", resourceUrl);
       var response = httpclient.execute(httpGet);
       var statusCode = new ResponseStatusCode(response.getStatusLine().getStatusCode());
+      l.debug("content:: response status code '{}'", statusCode);
       if (statusCode.isOk()) {
         var entity = response.getEntity();
         if (entity == null) {
-          l.error("content():: Server response does not contain any data.");
+          l.error("content:: Server response does not contain any data.");
           throw new RemoteResourceException("Missing server data.");
         }
         var responseEtagHeader = response.getFirstHeader(ETAG_HEADER);
+        l.debug("content:: etag header '{}'", responseEtagHeader);
         resource = Optional.of(new ResourceImpl(entity.getContent(), responseEtagHeader == null ? null : responseEtagHeader.getValue()));
       } else if (statusCode.isNotUpdated()) {
         resource = Optional.empty();
       } else if (statusCode.isClientError()) {
-        l.error("content():: Unable to get resource '{}' due to client error: '{}' ({}).", resourceUrl, statusCode.statusCode,
-            response.getStatusLine().getReasonPhrase());
+        l.error("content:: Unable to get resource '{}' due to client error: '{}' ({}).", resourceUrl, statusCode.statusCode,
+                response.getStatusLine().getReasonPhrase());
         throw new RemoteResourceException(String.format("Unable to get resource '%s' due to client error: '%s' (%s).",
-            resourceUrl, statusCode.statusCode, response.getStatusLine().getReasonPhrase()));
+                resourceUrl, statusCode.statusCode, response.getStatusLine().getReasonPhrase()));
       } else {
-        l.warn("content():: Resource '{}' unexpected response '{}' ({}).", resourceUrl, statusCode.statusCode,
-            response.getStatusLine().getReasonPhrase());
+        l.warn("content:: Resource '{}' unexpected response '{}' ({}).", resourceUrl, statusCode.statusCode,
+                response.getStatusLine().getReasonPhrase());
         HttpEntity entity = response.getEntity();
         resource = entity == null ? Optional.empty() : Optional.of(new ResourceImpl(entity.getContent()));
       }
@@ -108,6 +110,7 @@ public class HttpResource implements AutoCloseable {
   }
 
   private static class ResponseStatusCode {
+
     int statusCode;
 
     ResponseStatusCode(int statusCode) {
@@ -124,9 +127,14 @@ public class HttpResource implements AutoCloseable {
     public boolean isOk() {
       return statusCode == 200;
     }
-    
+
     public boolean isNotUpdated() {
       return statusCode == 304;
+    }
+
+    @Override
+    public String toString() {
+      return "ResponseStatusCode{" + "statusCode=" + statusCode + '}';
     }
 
   }

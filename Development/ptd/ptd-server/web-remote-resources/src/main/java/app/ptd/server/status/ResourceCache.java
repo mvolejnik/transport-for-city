@@ -25,7 +25,7 @@ public class ResourceCache {
 
     private Map<URL, Resource> cache = new HashMap<>(CACHE_SIZE_INIT);
     
-    private static final Logger l = LogManager.getLogger(GetUrlResourceJob.class);
+    private static final Logger l = LogManager.getLogger(ResourceCache.class);
 
     synchronized public ResourceCache resource(URL url, Resource resource) {
         Objects.nonNull(url);

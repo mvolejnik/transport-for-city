@@ -16,7 +16,7 @@ public class StatusUpdates {
 	@Path("/countries/{country}/cities/{city}/operators/{operator}/lines")
 	@Produces("application/json;charset=utf-8")
 	public void status(){
-		l.debug("status()::");
+		l.debug("status::");
 		
 	}
 	

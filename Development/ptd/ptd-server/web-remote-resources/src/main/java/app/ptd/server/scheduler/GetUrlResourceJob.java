@@ -29,13 +29,14 @@ public class GetUrlResourceJob implements Job {
   public void execute(JobExecutionContext context) throws JobExecutionException {
     l.info("execute:: job started [{}]", context.getJobDetail().getKey());
     var urlParam = context.getJobDetail().getJobDataMap().getString(DATA_URL);
-    l.debug("execute():: resource url '{}'", urlParam);
+    l.debug("execute:: resource url '{}'", urlParam);
     try {
       var url = new URL(urlParam);
       var cached = RESOURCE_CACHE.resource(url);
-      l.debug("execute():: getting resource '{}'", url.toExternalForm());
-      var resource = new HttpResource().content(url, cached.isPresent() ? cached.get().fingerprint() : Optional.empty(), null);
-      l.debug("execute():: resource has content '{}'", resource.isPresent());
+      l.debug("execute:: resource '{}' already in cache '{}' with fingerprint '{}'", url, cached.isPresent(), cached.isPresent() ? cached.get().digest() : "");
+      l.debug("execute:: getting resource '{}'", url.toExternalForm());
+      var resource = new HttpResource().content(url, cached.isPresent() ? cached.get().fingerprint() : Optional.empty(), Optional.empty());
+      l.debug("execute:: resource has content '{}'", resource.isPresent());
       resource.ifPresent(r -> {
           notifyServices(r.content().get());
           RESOURCE_CACHE.resource(url, r);
@@ -43,6 +44,9 @@ public class GetUrlResourceJob implements Job {
     } catch (MalformedURLException | RemoteResourceException e) {
       l.error("Incorrect URL to download resource '{}'", urlParam);
       throw new JobExecutionException(String.format("Unable to download resource '%s'", urlParam), e);
+    } catch (Exception e){
+      l.error("Exception has occured", e);
+      throw e;
     }
     l.info("execute:: job finished");
   }

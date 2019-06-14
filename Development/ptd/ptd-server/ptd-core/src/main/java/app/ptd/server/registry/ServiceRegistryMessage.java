@@ -33,7 +33,7 @@ public class ServiceRegistryMessage {
     
     
     public String toJson(String action){
-        l.debug("toJson()::");
+        l.debug("toJson::");
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         Json.createGenerator(os).writeStartObject()
                 .writeStartObject(action)
@@ -47,7 +47,7 @@ public class ServiceRegistryMessage {
     
     /*
     private void init(String json){
-        l.debug("init()::");
+        l.debug("init::");
         var parser = Json.createParser(new ByteArrayInputStream(json.getBytes()));
         while (parser.hasNext()) {
             var event = parser.next();
