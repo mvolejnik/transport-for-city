@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://homecredit.kz/ws/switch-system/v1">
+<soapenv:Header/>
+<soapenv:Body>
+<v1:switchAllRequest>
+<v1:action>OFF</v1:action>
+</v1:switchAllRequest>
+</soapenv:Body>
+</soapenv:Envelope>

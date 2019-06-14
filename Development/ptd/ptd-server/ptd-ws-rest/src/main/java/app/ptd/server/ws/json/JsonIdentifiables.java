@@ -22,12 +22,12 @@ public class JsonIdentifiables {
 	private static final String CITY_LOCAL_NAME = "localName" ;
 	
 	public void identifiables(OutputStream citiesOs, Identifiables<? extends Identifiable> objects){
-		l.debug("identifiables()::");
+		l.debug("identifiables::");
 		JsonGenerator gen = Json.createGenerator(citiesOs);	
 		gen.writeStartObject(); // {
 		gen.writeStartArray(objects.getName()); // {
 		for (Identifiable i : objects){
-			l.trace("identifiables():: Writing %s [%s] to JSON stream.", objects.getName(), i);
+			l.trace("identifiables:: Writing %s [%s] to JSON stream.", objects.getName(), i);
 			gen.writeStartObject();
 			gen.write(CITY_CODE, i.getCode());
 			gen.write(CITY_NAME, i.getName());

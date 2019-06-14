@@ -57,6 +57,11 @@
     </build>
     <dependencies>
         <dependency>
+            <groupId>app.ptd.server</groupId>
+            <artifactId>ptd-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
         </dependency>

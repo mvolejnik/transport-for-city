@@ -15,6 +15,10 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>JAXB RSS Library</name>
     <url>https://github.com/mvolejnik/public-transport-delays</url>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <build>
         <plugins>

@@ -1,13 +1,14 @@
 package app.ptd.server.remoteresources;
 
 import java.io.InputStream;
+import java.util.Optional;
 
 public interface Resource {
 
-  public InputStream content();
+  public Optional<InputStream> content();
   
-  public boolean hasContent();
+  public Optional<String> fingerprint();
   
-  public boolean modified();
+  public Optional<byte[]> digest();
 
 }

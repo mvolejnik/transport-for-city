@@ -16,9 +16,9 @@
   <modules>
     <module>lib-rss</module>
     <module>ptd-core</module>
-    <module>ptd-ws-rest</module>
     <module>lib-status-updates</module>
-    <module>ptd-web-scheduler</module>
     <module>lib-remote-resources</module>
+    <module>web-remote-resources</module>
+    <module>ptd-ws-rest</module>
   </modules>
 </project>
