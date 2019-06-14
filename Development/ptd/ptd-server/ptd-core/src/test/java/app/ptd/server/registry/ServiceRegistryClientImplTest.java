@@ -5,7 +5,6 @@
  */
 package app.ptd.server.registry;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -21,15 +20,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import javax.json.Json;
-import javax.json.JsonException;
-import javax.json.stream.JsonParser;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ServiceRegistryClientImplTest {
 
-    private static final String ACTION = "test";
     private static final URI URN;
     private static URL MSG_URL;
     private static final String MULTICAST_ADDRESS = "233.146.53.49";

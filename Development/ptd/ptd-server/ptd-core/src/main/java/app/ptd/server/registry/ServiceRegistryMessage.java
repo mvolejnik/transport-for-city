@@ -5,10 +5,10 @@
  */
 package app.ptd.server.registry;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.net.URL;
+import java.nio.charset.Charset;
 import javax.json.Json;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,18 +23,13 @@ public class ServiceRegistryMessage {
     private final URL url;
     private static final String JSON_PROPERTY_SERVICE = "srv";
     private static final String JSON_PROPERTY_URL = "url";
-
+    private String UTF_8 = "UTF-8";
     private static final Logger l = LogManager.getLogger(ServiceRegistryMessage.class);
 
     public ServiceRegistryMessage(URI uri, URL url) {
         this.uri = uri;
         this.url = url;
     }
-    
-    /*
-    public ServiceRegistryMessage(String json) {
-        init(json);
-    }*/
     
     
     public String toJson(String action){
@@ -47,7 +42,7 @@ public class ServiceRegistryMessage {
                 .writeEnd()
                 .writeEnd()
                 .close();
-        return os.toString();
+        return os.toString(Charset.forName(UTF_8));
     }
     
     /*

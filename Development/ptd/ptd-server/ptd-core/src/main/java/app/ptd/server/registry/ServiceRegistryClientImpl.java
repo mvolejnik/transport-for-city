@@ -1,13 +1,12 @@
 package app.ptd.server.registry;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.net.URI;
 import java.net.URL;
-import javax.json.Json;
+import java.nio.charset.Charset;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,6 +18,7 @@ public class ServiceRegistryClientImpl implements ServiceRegistryClient {
     private InetSocketAddress inetSocketAddress;
     private URI uri;
     private URL url;
+    private Charset UTF_8 = Charset.forName("UTF-8");
     private static final Logger l = LogManager.getLogger(ServiceRegistryClientImpl.class);
 
     public ServiceRegistryClientImpl(InetSocketAddress inetSocketAddress, URI serviceUri, URL url) {
@@ -33,12 +33,12 @@ public class ServiceRegistryClientImpl implements ServiceRegistryClient {
     
     @Override
     public void register() {
-        sendMulticastMessage(new ServiceRegistryMessage(uri, url).toJson("register").getBytes());
+        sendMulticastMessage(new ServiceRegistryMessage(uri, url).toJson("register").getBytes(UTF_8));
     }
 
     @Override
     public void unregister() {
-        sendMulticastMessage(new ServiceRegistryMessage(uri, url).toJson("unregister").getBytes());
+        sendMulticastMessage(new ServiceRegistryMessage(uri, url).toJson("unregister").getBytes(UTF_8));
     }
     
     private void sendMulticastMessage(byte[] message){

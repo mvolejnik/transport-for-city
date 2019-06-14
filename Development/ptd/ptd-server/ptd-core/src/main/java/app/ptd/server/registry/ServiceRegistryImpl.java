@@ -9,10 +9,8 @@ package app.ptd.server.registry;
  *
  * @author mvolejnik
  */
-public interface ServiceRegistry {
-
-    public void register();
-
-    public void unregister();
-
+public class ServiceRegistryImpl {
+    
+    
+    
 }

@@ -6,7 +6,6 @@
 package app.ptd.server.registry;
 
 import java.io.ByteArrayInputStream;
-import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -14,7 +13,6 @@ import java.net.URL;
 import javax.json.Json;
 import javax.json.JsonException;
 import javax.json.stream.JsonParser;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,14 +42,14 @@ public class ServiceRegistryMessageTest {
      */
     @Test
     public void testToJson() {
-        System.out.println("message");
+        System.out.println("testToJson");
         String expectedJson = "{\"test\":{\"srv\":\"" + URN + "\",\"url\":\"" + MSG_URL + "\"}}";
         assertEquals(expectedJson, new ServiceRegistryMessage(URN, MSG_URL).toJson(ACTION), "Produced JSON is incorrect.");
     }
     
     @Test
     public void testMessageValidity() throws URISyntaxException, MalformedURLException {
-        System.out.println("message");
+        System.out.println("testMessageValidity");
         try {
             JsonParser p = Json.createParser(new ByteArrayInputStream(new ServiceRegistryMessage(URN, MSG_URL).toJson(ACTION).getBytes()));
             while (p.hasNext()) {
@@ -61,5 +59,5 @@ public class ServiceRegistryMessageTest {
             fail("Produced JSON not proper json object.");
         }
     }
-
+    
 }
