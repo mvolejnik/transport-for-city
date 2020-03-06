@@ -24,7 +24,7 @@
 		<param-name>operators</param-name>
 		<param-value>
                 <![CDATA[
-                    cz.prg.dpp=http://www.dpp.cz/rss/mimoradne-udalosti;
+                    cz.prg.dpp=https://www.dpp.cz/rss/cz/mimoradne-udalosti.xml;
                     cz.prg.pid=https://pid.cz/feed/rss-mimoradnosti;
                 ]]>
                 </param-value>
