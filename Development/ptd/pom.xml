@@ -8,7 +8,7 @@
 	<artifactId>public-transport-delays</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Transport for City</name>
+	<name>Public Transport Delays</name>
 	<url>https://github.com/mvolejnik/public-transport-delays</url>
 
 	<properties>
