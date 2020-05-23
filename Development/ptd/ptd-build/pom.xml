@@ -187,22 +187,22 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.4.27.v20200227</version>
+                    <version>9.4.28.v20200408</version>
                     <dependencies>
                         <dependency>
                             <groupId>org.eclipse.jetty</groupId>
                             <artifactId>jetty-server</artifactId>
-                            <version>9.4.27.v20200227</version>
+                            <version>9.4.28.v20200408</version>
                         </dependency>
                         <dependency>
                             <groupId>org.eclipse.jetty</groupId>
                             <artifactId>jetty-servlet</artifactId>
-                            <version>9.4.27.v20200227</version>
+                            <version>9.4.28.v20200408</version>
                         </dependency>
                         <dependency>
                             <groupId>org.eclipse.jetty</groupId>
                             <artifactId>jetty-webapp</artifactId>
-                            <version>9.4.27.v20200227</version>
+                            <version>9.4.28.v20200408</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -404,28 +404,28 @@
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-server</artifactId>
-                <version>9.4.27.v20200227</version>
+                <version>9.4.28.v20200408</version>
             </dependency>
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-servlet</artifactId>
-                <version>9.4.27.v20200227</version>
+                <version>9.4.28.v20200408</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-webapp -->
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-webapp</artifactId>
-                <version>9.4.27.v20200227</version>
+                <version>9.4.28.v20200408</version>
             </dependency>
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-util</artifactId>
-                <version>9.4.27.v20200227</version>
+                <version>9.4.28.v20200408</version>
             </dependency>
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-continuation</artifactId>
-                <version>9.4.27.v20200227</version>
+                <version>9.4.28.v20200408</version>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.jersey.core</groupId>
